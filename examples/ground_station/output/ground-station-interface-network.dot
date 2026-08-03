@@ -1,0 +1,21 @@
+digraph GroundStationInterfaces {
+  rankdir=LR;
+  graph [fontname="Helvetica", bgcolor="#071525"];
+  node [fontname="Helvetica", shape=component, style=filled, fillcolor="#dbeafe", color="#0284c7"];
+  edge [color="#38bdf8", penwidth=2];
+  "GroundStation::AntennaSubsystem::spaceLink" [label="spaceLink"]
+  "GroundStation::AntennaSubsystem::tracking" [label="tracking"]
+  "GroundStation::BasebandProcessor::missionOutput" [label="missionOutput"]
+  "GroundStation::BasebandProcessor::rfLink" [label="rfLink"]
+  "GroundStation::BasebandProcessor::trackingInput" [label="trackingInput"]
+  "GroundStation::FlightDynamicsSystem::products" [label="products"]
+  "GroundStation::FlightDynamicsSystem::trackingInput" [label="trackingInput"]
+  "GroundStation::MissionControlSystem::commandAndTelemetry" [label="commandAndTelemetry"]
+  "GroundStation::MissionControlSystem::missionInput" [label="missionInput"]
+  "GroundStation::AntennaSubsystem::spaceLink" -> "GroundStation::BasebandProcessor::rfLink" [dir=both, arrowhead=none, arrowtail=none];
+  "GroundStation::AntennaSubsystem::tracking" -> "GroundStation::BasebandProcessor::trackingInput" [dir=both, arrowhead=none, arrowtail=none];
+  "GroundStation::AntennaSubsystem::tracking" -> "GroundStation::FlightDynamicsSystem::trackingInput" [dir=both, arrowhead=none, arrowtail=none];
+  "GroundStation::BasebandProcessor::missionOutput" -> "GroundStation::MissionControlSystem::missionInput" [dir=both, arrowhead=none, arrowtail=none];
+  "GroundStation::BasebandProcessor::rfLink" -> "GroundStation::MissionControlSystem::commandAndTelemetry" [dir=both, arrowhead=none, arrowtail=none];
+  "GroundStation::FlightDynamicsSystem::products" -> "GroundStation::MissionControlSystem::missionInput" [dir=both, arrowhead=none, arrowtail=none];
+}

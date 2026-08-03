@@ -1,0 +1,10 @@
+system,interface,type,direction,qualified_name
+"AntennaSubsystem","spaceLink","SpaceLinkPort","unspecified","GroundStation::AntennaSubsystem::spaceLink"
+"AntennaSubsystem","tracking","TrackingDataPort","unspecified","GroundStation::AntennaSubsystem::tracking"
+"BasebandProcessor","missionOutput","MissionDataPort","unspecified","GroundStation::BasebandProcessor::missionOutput"
+"BasebandProcessor","rfLink","SpaceLinkPort","unspecified","GroundStation::BasebandProcessor::rfLink"
+"BasebandProcessor","trackingInput","TrackingDataPort","unspecified","GroundStation::BasebandProcessor::trackingInput"
+"FlightDynamicsSystem","products","MissionDataPort","unspecified","GroundStation::FlightDynamicsSystem::products"
+"FlightDynamicsSystem","trackingInput","TrackingDataPort","unspecified","GroundStation::FlightDynamicsSystem::trackingInput"
+"MissionControlSystem","commandAndTelemetry","SpaceLinkPort","unspecified","GroundStation::MissionControlSystem::commandAndTelemetry"
+"MissionControlSystem","missionInput","MissionDataPort","unspecified","GroundStation::MissionControlSystem::missionInput"

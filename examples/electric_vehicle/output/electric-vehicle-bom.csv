@@ -1,0 +1,7 @@
+part,qualified_name,modelled_attributes
+"BatteryPack","ElectricVehicle::BatteryPack","massKg=486; nominalEnergyKWh=82; partNumber=EV-BAT-82"
+"ElectricVehicleSystem","ElectricVehicle::ElectricVehicleSystem",""
+"Inverter","ElectricVehicle::Inverter","massKg=18; partNumber=EV-INV-400; peakPowerKW=210"
+"ThermalLoop","ElectricVehicle::ThermalLoop","coolingCapacityKW=12; massKg=21; partNumber=EV-THM-09"
+"TractionMotor","ElectricVehicle::TractionMotor","massKg=72; partNumber=EV-MTR-210; peakTorqueNm=430"
+"VehicleControlUnit","ElectricVehicle::VehicleControlUnit","asilLevel=ASIL-D; massKg=3; partNumber=EV-VCU-12"

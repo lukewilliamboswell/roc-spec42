@@ -17,5 +17,38 @@ jobs:
         with:
           version: nightly-new-compiler
           nightly-tag: ${{ steps.roc-version.outputs.tag }}
-      - run: roc check examples/generate_summary.roc
+      - name: Check every example script
+        run: |
+          while IFS= read -r source; do
+            roc check "$source"
+          done < <(find examples -name '*.roc' -print | sort)
       - run: roc docs platform/main.roc --output=/tmp/roc-spec42-docs --no-cache
+
+  packaged-e2e:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out pinned Spec42 fork
+        run: |
+          git clone --depth=1 --branch feature/wasm-model-generation https://github.com/lukewilliamboswell/spec42.git ../spec42
+          test "$(git -C ../spec42 rev-parse HEAD)" = "$(sed -n '1p' .spec42-revision)"
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Install Zig
+        uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29
+        with:
+          version: 0.16.0
+          use-cache: false
+      - name: Read pinned Roc nightly
+        id: roc-version
+        run: printf 'tag=%s\n' "$(sed -n '1p' .roc-version)" >> "$GITHUB_OUTPUT"
+      - uses: roc-lang/setup-roc@cbe782d6f165b89c87d99f50a59ac4f5f73b4427
+        with:
+          version: nightly-new-compiler
+          nightly-tag: ${{ steps.roc-version.outputs.tag }}
+      - name: Regenerate example snapshots
+        run: scripts/update-example-snapshots.sh
+      - name: Golden outputs are current
+        run: git diff --exit-code -- examples

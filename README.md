@@ -14,9 +14,11 @@ roc build generate_diagram.roc --output=plugin.wasm
 spec42 generate plugin.wasm model.sysml --output generated -- target=my-generator
 ```
 
-See [`examples/generate_summary.roc`](examples/generate_summary.roc) for a complete generator.
-During platform development, its header points at the local [`platform/main.roc`](platform/main.roc).
-A released example should replace that path with the release bundle URL.
+The [example matrix](examples/README.md) contains three self-contained engineering models and
+nine complete generators. Each model directory includes its own `model.sysml`; the scripts produce
+CSV registers, Graphviz diagrams, simulation data, and standalone HTML tools. During platform
+development, their headers point at the local [`platform/main.roc`](platform/main.roc). A released
+example should replace that path with the release bundle URL.
 
 ## Roc API
 
@@ -48,15 +50,19 @@ The expected Roc nightly is pinned in [`.roc-version`](.roc-version); CI reads t
 ```sh
 rustup target add wasm32-unknown-unknown
 scripts/build-host.sh
-roc check examples/generate_summary.roc
-roc build examples/generate_summary.roc --output=plugin.wasm
+roc check examples/electric_vehicle/vcrm_csv.roc
+roc build examples/electric_vehicle/vcrm_csv.roc --output=plugin.wasm
 scripts/test.sh
 ```
 
 `scripts/test.sh` builds the release archive, serves it from an ephemeral loopback HTTP server,
-rewrites every example header to that URL in a temporary directory, and runs the resulting plugin
-through Spec42. It also generates the public API documentation and rejects leaked internal model
-conversion helpers.
+rewrites every example header to that URL in a temporary directory, and runs all nine scripts
+against the model beside each script through Spec42. Every generated artifact must match its
+committed golden file under the model's `output/` directory byte-for-byte. The test also generates
+the public API documentation and rejects leaked internal model conversion helpers.
+
+Use `scripts/update-example-snapshots.sh` to regenerate golden outputs after an intentional change.
+CI runs that command and fails if it leaves an uncommitted diff.
 
 `scripts/build-host.sh` filters non-WebAssembly members from Rust's static library before creating
 the relocatable `platform/targets/wasm32/host.wasm`. That generated file is intentionally ignored

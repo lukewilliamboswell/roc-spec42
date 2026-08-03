@@ -1,0 +1,27 @@
+digraph WarehouseRobotMission {
+  rankdir=LR;
+  graph [fontname="Helvetica", bgcolor="#f8fafc"];
+  node [fontname="Helvetica", shape=box, style="rounded,filled", fillcolor="#dbeafe", color="#2563eb"];
+  edge [fontname="Helvetica", color="#475569"];
+  "blocked" [label="blocked"]
+  "booting" [label="booting"]
+  "charging" [label="charging"]
+  "dropping" [label="dropping"]
+  "faulted" [label="faulted"]
+  "idle" [label="idle"]
+  "navigatingToDrop" [label="navigatingToDrop"]
+  "navigatingToPick" [label="navigatingToPick"]
+  "picking" [label="picking"]
+  "blocked" -> "navigatingToPick";
+  "booting" -> "idle";
+  "charging" -> "idle";
+  "dropping" -> "idle";
+  "faulted" -> "booting";
+  "idle" -> "charging";
+  "idle" -> "navigatingToPick";
+  "navigatingToDrop" -> "dropping";
+  "navigatingToPick" -> "blocked";
+  "navigatingToPick" -> "faulted";
+  "navigatingToPick" -> "picking";
+  "picking" -> "navigatingToDrop";
+}
