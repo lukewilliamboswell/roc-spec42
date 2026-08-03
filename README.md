@@ -11,8 +11,8 @@ no required custom metadata.
 A release bundle includes the prebuilt platform host, so plugin authors only need Roc:
 
 ```sh
-roc build generate_diagram.roc --output=plugin.wasm
-spec42 generate plugin.wasm model.sysml -- target=my-generator
+roc build examples/electric_vehicle/vcrm_csv.roc --output=vcrm.wasm
+spec42 --no-stdlib generate vcrm.wasm examples/electric_vehicle/model.sysml
 ```
 
 The [example matrix](examples/README.md) contains three self-contained engineering models and
@@ -41,12 +41,12 @@ domain states rather than `None`/`Some` values.
 
 ## Platform development
 
-The Rust guest adapter currently uses the SDK from the sibling Spec42 checkout at `../spec42`.
-This keeps both sides of the experimental ABI in lockstep until the Spec42 changes have a commit
-that can be pinned as a Git dependency.
+The Rust guest adapter uses the SDK from the sibling Spec42 checkout at `../spec42`. The expected
+Spec42 commit is pinned in [`.spec42-revision`](.spec42-revision), and CI verifies the sibling branch
+against that revision so both sides of the ABI remain in lockstep.
 
-Requirements: Rust stable with `wasm32-unknown-unknown`, Zig 0.16, and Roc on `PATH`.
-The expected Roc nightly is pinned in [`.roc-version`](.roc-version); CI reads the same tag.
+Requirements: Bash, Python 3, `curl`, Rust stable with `wasm32-unknown-unknown`, Zig 0.16, and Roc on
+`PATH`. The expected Roc nightly is pinned in [`.roc-version`](.roc-version); CI reads the same tag.
 
 ```sh
 rustup target add wasm32-unknown-unknown
