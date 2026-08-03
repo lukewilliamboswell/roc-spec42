@@ -12,7 +12,7 @@ A release bundle includes the prebuilt platform host, so plugin authors only nee
 
 ```sh
 roc build generate_diagram.roc --output=plugin.wasm
-spec42 generate plugin.wasm model.sysml --output generated -- target=my-generator
+spec42 generate plugin.wasm model.sysml -- target=my-generator
 ```
 
 The [example matrix](examples/README.md) contains three self-contained engineering models and

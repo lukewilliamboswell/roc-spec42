@@ -19,7 +19,7 @@ For example, from the repository root:
 
 ```sh
 roc build examples/electric_vehicle/vcrm_csv.roc --output=vcrm.wasm
-spec42 --no-stdlib generate vcrm.wasm examples/electric_vehicle/model.sysml --output=generated
+spec42 --no-stdlib generate vcrm.wasm examples/electric_vehicle/model.sysml
 ```
 
 The simulation manifest demonstrates one plugin returning multiple files in different directories.
