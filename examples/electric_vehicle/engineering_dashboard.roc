@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -30,7 +29,6 @@ main! = |_args| {
 		\\<h2>Requirements baseline</h2><section class="grid">${cards(requirements, "#f59e0b")}</section>
 		\\<h2>Verification campaign</h2><section class="grid">${cards(verifications, "#2563eb")}</section>
 		\\</main></html>
-	Artifacts.emit!("engineering-dashboard.html", html.to_utf8())?
 	Diagnostics.log!(Info, "generated electric-vehicle engineering dashboard")
-	Ok({})
+	Ok([{ file_path: "engineering-dashboard.html", contents: html.to_utf8() }])
 }

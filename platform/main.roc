@@ -1,12 +1,11 @@
 platform ""
 	requires {
-		main! : List(Str) => Try({}, Str)
+		main! : List(Str) => Try(List({ file_path : Str, contents : List(U8) }), Str)
 	}
-	exposes [Model, Artifacts, Diagnostics]
+	exposes [Model, Diagnostics]
 	packages {}
 	provides { "roc_generate": generate_for_host! }
 	hosted {
-		"roc_artifacts_emit": Artifacts.emit!,
 		"roc_diagnostics_log": HostDiagnostics.log!,
 		"roc_diagnostics_report": HostDiagnostics.report!,
 		"roc_model_children": HostModel.children!,
@@ -28,9 +27,8 @@ platform ""
 
 import Model
 import HostModel
-import Artifacts
 import Diagnostics
 import HostDiagnostics
 
-generate_for_host! : List(Str) => Try({}, Str)
+generate_for_host! : List(Str) => Try(List({ file_path : Str, contents : List(U8) }), Str)
 generate_for_host! = |args| main!(args)

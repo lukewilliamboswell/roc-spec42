@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -39,7 +38,6 @@ main! = |_args| {
 		\\${Str.join_with(states.map(state_node), "\n")}
 		\\${Str.join_with(transitions.map(transition_edge), "\n")}
 		\\}
-	Artifacts.emit!("warehouse-robot-state-machine.dot", dot.to_utf8())?
 	Diagnostics.log!(Info, "generated Graphviz state-machine view with ${transitions.len().to_str()} transitions")
-	Ok({})
+	Ok([{ file_path: "warehouse-robot-state-machine.dot", contents: dot.to_utf8() }])
 }

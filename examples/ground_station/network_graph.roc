@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -39,7 +38,6 @@ main! = |_args| {
 		\\${Str.join_with(ports.map(port_node), "\n")}
 		\\${Str.join_with(connections.map(connection_edge), "\n")}
 		\\}
-	Artifacts.emit!("ground-station-interface-network.dot", dot.to_utf8())?
 	Diagnostics.log!(Info, "generated interface network with ${connections.len().to_str()} connections")
-	Ok({})
+	Ok([{ file_path: "ground-station-interface-network.dot", contents: dot.to_utf8() }])
 }

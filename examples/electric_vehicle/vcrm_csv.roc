@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -51,7 +50,6 @@ main! = |_args| {
 	csv =
 		\\requirement,qualified_name,modelled_attributes,satisfied_by,verified_by
 		\\${Str.join_with(rows, "\n")}
-	Artifacts.emit!("electric-vehicle-vcrm.csv", csv.to_utf8())?
 	Diagnostics.log!(Info, "generated verification cross-reference matrix for ${requirements.len().to_str()} requirements")
-	Ok({})
+	Ok([{ file_path: "electric-vehicle-vcrm.csv", contents: csv.to_utf8() }])
 }

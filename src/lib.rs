@@ -6,7 +6,7 @@
 compile_error!("roc-spec42-host must be built for wasm32-unknown-unknown");
 
 use core::ffi::c_void;
-use spec42_generator_sdk::{artifacts, diagnostics, export, model, Guest};
+use spec42_generator_sdk::{diagnostics, export, model, Artifact, Guest};
 
 mod roc_platform_abi;
 
@@ -44,47 +44,47 @@ unsafe fn roc_list<T>(values: Vec<T>) -> RocList<T> {
     list
 }
 
-fn option_string_17(value: Option<String>) -> NoneOrSomeType17 {
+fn option_string_11(value: Option<String>) -> NoneOrSomeType11 {
+    match value {
+        None => NoneOrSomeType11 {
+            _payload_alignment: [],
+            payload: [0; 12],
+            tag: NoneOrSomeType11Tag::None,
+        },
+        Some(value) => NoneOrSomeType11 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(roc_str(&value)) },
+            tag: NoneOrSomeType11Tag::Some,
+        },
+    }
+}
+
+fn option_string_18(value: Option<String>) -> NoneOrSomeType18 {
+    match value {
+        None => NoneOrSomeType18 {
+            _payload_alignment: [],
+            payload: [0; 12],
+            tag: NoneOrSomeType18Tag::None,
+        },
+        Some(value) => NoneOrSomeType18 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(roc_str(&value)) },
+            tag: NoneOrSomeType18Tag::Some,
+        },
+    }
+}
+
+fn option_bool(value: Option<bool>) -> NoneOrSomeType17 {
     match value {
         None => NoneOrSomeType17 {
             _payload_alignment: [],
-            payload: [0; 12],
+            payload: [0; 1],
             tag: NoneOrSomeType17Tag::None,
         },
         Some(value) => NoneOrSomeType17 {
             _payload_alignment: [],
-            payload: unsafe { payload_bytes(roc_str(&value)) },
-            tag: NoneOrSomeType17Tag::Some,
-        },
-    }
-}
-
-fn option_string_24(value: Option<String>) -> NoneOrSomeType24 {
-    match value {
-        None => NoneOrSomeType24 {
-            _payload_alignment: [],
-            payload: [0; 12],
-            tag: NoneOrSomeType24Tag::None,
-        },
-        Some(value) => NoneOrSomeType24 {
-            _payload_alignment: [],
-            payload: unsafe { payload_bytes(roc_str(&value)) },
-            tag: NoneOrSomeType24Tag::Some,
-        },
-    }
-}
-
-fn option_bool(value: Option<bool>) -> NoneOrSomeType23 {
-    match value {
-        None => NoneOrSomeType23 {
-            _payload_alignment: [],
-            payload: [0; 1],
-            tag: NoneOrSomeType23Tag::None,
-        },
-        Some(value) => NoneOrSomeType23 {
-            _payload_alignment: [],
             payload: unsafe { payload_bytes(value) },
-            tag: NoneOrSomeType23Tag::Some,
+            tag: NoneOrSomeType17Tag::Some,
         },
     }
 }
@@ -93,10 +93,25 @@ fn summary(value: model::ElementSummary) -> HostModelChildrenOk {
     HostModelChildrenOk {
         handle: roc_str(&value.handle),
         metaclass: roc_str(&value.metaclass),
-        name: option_string_17(value.name),
+        name: option_string_11(value.name),
         qualified_name: roc_str(&value.qualified_name),
         semantic_id: roc_str(&value.semantic_id),
         library_element: value.library_element,
+    }
+}
+
+fn option_summary_21(value: Option<model::ElementSummary>) -> NoneOrSomeType21 {
+    match value {
+        None => NoneOrSomeType21 {
+            _payload_alignment: [],
+            payload: [0; 68],
+            tag: NoneOrSomeType21Tag::None,
+        },
+        Some(value) => NoneOrSomeType21 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(summary(value)) },
+            tag: NoneOrSomeType21Tag::Some,
+        },
     }
 }
 
@@ -115,40 +130,25 @@ fn option_summary_27(value: Option<model::ElementSummary>) -> NoneOrSomeType27 {
     }
 }
 
-fn option_summary_33(value: Option<model::ElementSummary>) -> NoneOrSomeType33 {
+fn option_multiplicity(value: Option<model::Multiplicity>) -> NoneOrSomeType19 {
     match value {
-        None => NoneOrSomeType33 {
-            _payload_alignment: [],
-            payload: [0; 68],
-            tag: NoneOrSomeType33Tag::None,
-        },
-        Some(value) => NoneOrSomeType33 {
-            _payload_alignment: [],
-            payload: unsafe { payload_bytes(summary(value)) },
-            tag: NoneOrSomeType33Tag::Some,
-        },
-    }
-}
-
-fn option_multiplicity(value: Option<model::Multiplicity>) -> NoneOrSomeType25 {
-    match value {
-        None => NoneOrSomeType25 {
+        None => NoneOrSomeType19 {
             _payload_alignment: [],
             payload: [0; 36],
-            tag: NoneOrSomeType25Tag::None,
+            tag: NoneOrSomeType19Tag::None,
         },
         Some(value) => {
             let multiplicity = NoneOrSomeSome {
-                lower: option_string_24(value.lower),
-                upper: option_string_24(value.upper),
+                lower: option_string_18(value.lower),
+                upper: option_string_18(value.upper),
                 implied: value.implied,
                 ordered: value.ordered,
                 unique: option_bool(value.unique),
             };
-            NoneOrSomeType25 {
+            NoneOrSomeType19 {
                 _payload_alignment: [],
                 payload: unsafe { payload_bytes(multiplicity) },
-                tag: NoneOrSomeType25Tag::Some,
+                tag: NoneOrSomeType19Tag::Some,
             }
         }
     }
@@ -156,14 +156,14 @@ fn option_multiplicity(value: Option<model::Multiplicity>) -> NoneOrSomeType25 {
 
 fn detail(value: model::ElementDetail) -> HostModelElementOk {
     HostModelElementOk {
-        declared_name: option_string_24(value.declared_name),
-        direction: option_string_24(value.direction),
-        documentation: option_string_24(value.documentation),
-        effective_name: option_string_24(value.effective_name),
-        evaluated_value: option_string_24(value.evaluated_value),
+        declared_name: option_string_18(value.declared_name),
+        direction: option_string_18(value.direction),
+        documentation: option_string_18(value.documentation),
+        effective_name: option_string_18(value.effective_name),
+        evaluated_value: option_string_18(value.evaluated_value),
         multiplicity: option_multiplicity(value.multiplicity),
-        owner: option_summary_27(value.owner),
-        short_name: option_string_24(value.short_name),
+        owner: option_summary_21(value.owner),
+        short_name: option_string_18(value.short_name),
         source_uri: roc_str(&value.source_uri),
         summary: summary(value.summary),
         source_range: HostModelElementOkSourceRange {
@@ -221,19 +221,19 @@ fn take_string(value: RocStr) -> String {
     result
 }
 
-fn take_optional_string_9(value: NoneOrSomeType9) -> Option<String> {
+fn take_optional_string_3(value: NoneOrSomeType3) -> Option<String> {
     let result = match value.tag {
-        NoneOrSomeType9Tag::None => None,
-        NoneOrSomeType9Tag::Some => Some(value.payload_some().as_str().to_owned()),
+        NoneOrSomeType3Tag::None => None,
+        NoneOrSomeType3Tag::Some => Some(value.payload_some().as_str().to_owned()),
     };
     unsafe { value.decref(roc_host()) };
     result
 }
 
-fn take_optional_string_18(value: NoneOrSomeType18) -> Option<String> {
+fn take_optional_string_12(value: NoneOrSomeType12) -> Option<String> {
     let result = match value.tag {
-        NoneOrSomeType18Tag::None => None,
-        NoneOrSomeType18Tag::Some => Some(value.payload_some().as_str().to_owned()),
+        NoneOrSomeType12Tag::None => None,
+        NoneOrSomeType12Tag::Some => Some(value.payload_some().as_str().to_owned()),
     };
     unsafe { value.decref(roc_host()) };
     result
@@ -245,30 +245,6 @@ fn level(value: DebugOrErrorOrInfoOrWarning) -> diagnostics::Level {
         DebugOrErrorOrInfoOrWarning::Error => diagnostics::Level::Error,
         DebugOrErrorOrInfoOrWarning::Info => diagnostics::Level::Info,
         DebugOrErrorOrInfoOrWarning::Warning => diagnostics::Level::Warning,
-    }
-}
-
-#[no_mangle]
-pub extern "C" fn roc_artifacts_emit(
-    path: RocStr,
-    content: RocListWith<u8, false>,
-) -> ArtifactsEmitResult {
-    let result = artifacts::emit(path.as_str(), content.as_slice());
-    unsafe {
-        path.decref(roc_host());
-        content.decref(roc_host());
-    }
-    match result {
-        Ok(()) => ArtifactsEmitResult {
-            _payload_alignment: [],
-            payload: [0; 12],
-            tag: ArtifactsEmitResultTag::Ok,
-        },
-        Err(message) => ArtifactsEmitResult {
-            _payload_alignment: [],
-            payload: error_string(message),
-            tag: ArtifactsEmitResultTag::Err,
-        },
     }
 }
 
@@ -285,10 +261,10 @@ pub extern "C" fn roc_diagnostics_log(
 pub extern "C" fn roc_diagnostics_report(
     diagnostic_level: DebugOrErrorOrInfoOrWarning,
     message: RocStr,
-    element: NoneOrSomeType9,
+    element: NoneOrSomeType3,
 ) {
     let message_value = message.as_str().to_owned();
-    let element_value = take_optional_string_9(element);
+    let element_value = take_optional_string_3(element);
     diagnostics::report(
         level(diagnostic_level),
         &message_value,
@@ -313,8 +289,8 @@ pub extern "C" fn roc_model_roots() -> HostModelRootsResult {
 }
 
 #[no_mangle]
-pub extern "C" fn roc_model_find(metaclass: NoneOrSomeType18) -> HostModelFindResult {
-    summaries_result(model::find(take_optional_string_18(metaclass).as_deref()))
+pub extern "C" fn roc_model_find(metaclass: NoneOrSomeType12) -> HostModelFindResult {
+    summaries_result(model::find(take_optional_string_12(metaclass).as_deref()))
 }
 
 #[no_mangle]
@@ -354,7 +330,7 @@ pub extern "C" fn roc_model_typed_by(feature: RocStr) -> HostModelTypedByResult 
     match model::typed_by(&feature) {
         Ok(value) => HostModelTypedByResult {
             _payload_alignment: [],
-            payload: unsafe { payload_bytes(option_summary_33(value)) },
+            payload: unsafe { payload_bytes(option_summary_27(value)) },
             tag: HostModelTypedByResultTag::Ok,
         },
         Err(message) => HostModelTypedByResult {
@@ -421,7 +397,7 @@ pub extern "C" fn roc_crashed(bytes: *const u8, len: usize) {
 struct RocGenerator;
 
 impl Guest for RocGenerator {
-    fn generate(args: Vec<String>) -> Result<(), String> {
+    fn generate(args: Vec<String>) -> Result<Vec<Artifact>, String> {
         let mut host = make_roc_host(core::ptr::null_mut());
         unsafe { ROC_HOST = &mut host };
 
@@ -429,7 +405,15 @@ impl Guest for RocGenerator {
             unsafe { roc_list(args.iter().map(|arg| roc_str(arg)).collect::<Vec<RocStr>>()) };
         let result = unsafe { roc_generate(roc_args) };
         let output = match result.tag {
-            GenerateForHostResultTag::Ok => Ok(()),
+            GenerateForHostResultTag::Ok => Ok(result
+                .payload_ok()
+                .as_slice()
+                .iter()
+                .map(|artifact| Artifact {
+                    file_path: artifact.file_path.as_str().to_owned(),
+                    contents: artifact.contents.as_slice().to_vec(),
+                })
+                .collect()),
             GenerateForHostResultTag::Err => Err(result.payload_err().as_str().to_owned()),
         };
         unsafe {

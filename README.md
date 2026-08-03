@@ -2,8 +2,9 @@
 
 A Roc platform for building sandboxed core WebAssembly generator plugins for Spec42.
 
-Plugin authors get typed access to Spec42's semantic model, artifact emission, and diagnostics.
-The generated `.wasm` is a normal core module with three imports and no required custom metadata.
+Plugin authors get typed access to Spec42's semantic model and diagnostics, and return generated
+files as ordinary Roc values. The generated `.wasm` is a normal core module with two imports and
+no required custom metadata.
 
 ## Build a plugin
 
@@ -28,11 +29,11 @@ example should replace that path with the release bundle URL.
   `TypedBy`/`Untyped`, and `Ordered`/`Unordered`/`OrderingUnspecified`. Handles, semantic IDs,
   metaclasses, and relationship kinds are distinct tagged values rather than interchangeable
   strings.
-- `Artifacts.emit!` stages a relative path and raw bytes.
 - `Diagnostics.log!` and `report!` publish bounded diagnostics; `report!` takes the tagged context
   `General` or `ForElement(handle)`.
-- An application provides `main! : List(Str) => Try({}, Str)`. Spec42 passes arguments following
-  its CLI `--` marker.
+- An application provides
+  `main! : List(Str) => Try(List({ file_path : Str, contents : List(U8) }), Str)`. Spec42 passes
+  arguments following its CLI `--` marker, then validates every returned path and byte payload.
 
 For example, `Model.find!(ByMetaclass(Metaclass("PartDefinition")))` returns typed element
 summaries, and `Model.element!(summary.handle)` returns detail whose optional semantics are named
@@ -89,8 +90,7 @@ platform package.
 The internal `HostModel` and `HostDiagnostics` modules mirror the low-level ABI records; their
 public modules convert those records into tagged domain values. The linked Rust adapter translates
 the boundary values to Spec42 generator SDK calls. The SDK uses Postcard for compact model-query
-messages. Artifact contents cross the boundary as raw bytes. Spec42 loads the final module directly
-with Wasmtime and provides no filesystem, network, environment, clock, random, or subprocess
-imports.
+messages and the returned artifact list. Spec42 loads the final module directly with Wasmtime and
+provides no filesystem, network, environment, clock, random, or subprocess imports.
 
 Licensed under the [MIT License](LICENSE).

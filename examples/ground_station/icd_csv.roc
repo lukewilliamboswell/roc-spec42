@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -36,7 +35,6 @@ main! = |_args| {
 	csv =
 		\\system,interface,type,direction,qualified_name
 		\\${Str.join_with(rows, "\n")}
-	Artifacts.emit!("ground-station-icd.csv", csv.to_utf8())?
 	Diagnostics.log!(Info, "generated interface-control register for ${ports.len().to_str()} ports")
-	Ok({})
+	Ok([{ file_path: "ground-station-icd.csv", contents: csv.to_utf8() }])
 }

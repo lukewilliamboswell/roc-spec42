@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -37,7 +36,6 @@ main! = |_args| {
 	csv =
 		\\part,qualified_name,modelled_attributes
 		\\${Str.join_with(rows, "\n")}
-	Artifacts.emit!("electric-vehicle-bom.csv", csv.to_utf8())?
 	Diagnostics.log!(Info, "generated design bill of materials for ${parts.len().to_str()} part definitions")
-	Ok({})
+	Ok([{ file_path: "electric-vehicle-bom.csv", contents: csv.to_utf8() }])
 }

@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -28,7 +27,6 @@ main! = |_args| {
 		\\<section><h2>Ground segment assets</h2><table>${rows(systems)}</table></section>
 		\\<section><h2>External and internal interfaces</h2><table>${rows(ports)}</table></section>
 		\\</main></html>
-	Artifacts.emit!("ground-station-operations.html", html.to_utf8())?
 	Diagnostics.log!(Info, "generated ground-station operations dashboard")
-	Ok({})
+	Ok([{ file_path: "ground-station-operations.html", contents: html.to_utf8() }])
 }

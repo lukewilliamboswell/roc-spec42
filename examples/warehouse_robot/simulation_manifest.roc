@@ -1,6 +1,5 @@
 app [main!] { spec42: platform "../../platform/main.roc" }
 
-import spec42.Artifacts
 import spec42.Diagnostics
 import spec42.Model
 
@@ -34,7 +33,15 @@ main! = |args| {
 		\\${json_names(transitions)}
 		\\  ]
 		\\}
-	Artifacts.emit!("warehouse-robot-simulation.json", manifest.to_utf8())?
+	controller_properties =
+		\\model.digest=${info.model_digest}
+		\\initial.state=booting
+		\\state.count=${states.len().to_str()}
+		\\event.count=${events.len().to_str()}
+		\\transition-definition.count=${transitions.len().to_str()}
 	Diagnostics.log!(Info, "generated simulation/control manifest")
-	Ok({})
+	Ok([
+		{ file_path: "warehouse-robot-simulation.json", contents: manifest.to_utf8() },
+		{ file_path: "simulation/warehouse-robot.properties", contents: controller_properties.to_utf8() },
+	])
 }

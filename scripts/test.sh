@@ -69,6 +69,8 @@ while IFS= read -r source; do
 
 	plugin="$work_dir/${example_name}_${script_name}.wasm"
 	generated="$work_dir/generated/$example_name/$script_name"
+	additional_expected=""
+	additional_evidence=""
 	ROC_CACHE_DIR="$cache_dir" roc build "$rewritten" --output="$plugin"
 
 	cargo run \
@@ -88,37 +90,59 @@ while IFS= read -r source; do
 		ground_station/icd_csv) expected="ground-station-icd.csv"; evidence="SpaceLinkPort" ;;
 		ground_station/network_graph) expected="ground-station-interface-network.dot"; evidence="MissionControlSystem" ;;
 		ground_station/operations_dashboard) expected="ground-station-operations.html"; evidence="PublishProducts" ;;
-		warehouse_robot/simulation_manifest) expected="warehouse-robot-simulation.json"; evidence="MissionAssigned" ;;
+		warehouse_robot/simulation_manifest)
+			expected="warehouse-robot-simulation.json"
+			evidence="MissionAssigned"
+			additional_expected="simulation/warehouse-robot.properties"
+			additional_evidence="initial.state=booting"
+			;;
 		warehouse_robot/state_explorer) expected="warehouse-robot-state-explorer.html"; evidence="navigatingToPick" ;;
 		warehouse_robot/state_graph) expected="warehouse-robot-state-machine.dot"; evidence='"booting" -> "idle"' ;;
 		*) echo "error: no output assertion for $example_name/$script_name" >&2; exit 1 ;;
 	esac
-	artifact="$generated/$expected"
-	if [[ ! -s "$artifact" ]]; then
-		echo "error: $example_name/$script_name did not emit non-empty $expected" >&2
+	output_assertions=("$expected|$evidence")
+	if [[ -n "$additional_expected" ]]; then
+		output_assertions+=("$additional_expected|$additional_evidence")
+	fi
+	expected_paths=$(printf '%s\n' "${output_assertions[@]}" | cut -d '|' -f 1 | sort)
+	actual_paths=$(find "$generated" -type f ! -name '.spec42-generator-manifest.json' -print \
+		| sed "s#^$generated/##" \
+		| sort)
+	if [[ "$actual_paths" != "$expected_paths" ]]; then
+		echo "error: $example_name/$script_name returned an unexpected file set" >&2
+		diff -u <(printf '%s\n' "$expected_paths") <(printf '%s\n' "$actual_paths") || true
 		exit 1
 	fi
-	if ! rg -q -F "$evidence" "$artifact"; then
-		echo "error: $expected does not contain expected model evidence: $evidence" >&2
-		exit 1
-	fi
-	snapshot="$example_dir/output/$expected"
-	if [[ "$update_snapshots" == "1" ]]; then
-		mkdir -p "$example_dir/output"
-		cp "$artifact" "$snapshot"
-		echo "Updated $example_name/output/$expected"
-	elif [[ ! -f "$snapshot" ]]; then
-		echo "error: missing golden snapshot $snapshot" >&2
-		echo "run scripts/update-example-snapshots.sh to create it" >&2
-		exit 1
-	elif ! cmp -s "$snapshot" "$artifact"; then
-		echo "error: generated output differs from $snapshot" >&2
-		diff -u "$snapshot" "$artifact" || true
-		echo "run scripts/update-example-snapshots.sh to accept an intentional change" >&2
-		exit 1
-	else
-		echo "Verified $example_name/$script_name -> $expected (golden match)"
-	fi
+	for assertion in "${output_assertions[@]}"; do
+		asserted_path="${assertion%%|*}"
+		asserted_evidence="${assertion#*|}"
+		artifact="$generated/$asserted_path"
+		if [[ ! -s "$artifact" ]]; then
+			echo "error: $example_name/$script_name did not produce non-empty $asserted_path" >&2
+			exit 1
+		fi
+		if ! rg -q -F "$asserted_evidence" "$artifact"; then
+			echo "error: $asserted_path does not contain expected model evidence: $asserted_evidence" >&2
+			exit 1
+		fi
+		snapshot="$example_dir/output/$asserted_path"
+		if [[ "$update_snapshots" == "1" ]]; then
+			mkdir -p "$(dirname "$snapshot")"
+			cp "$artifact" "$snapshot"
+			echo "Updated $example_name/output/$asserted_path"
+		elif [[ ! -f "$snapshot" ]]; then
+			echo "error: missing golden snapshot $snapshot" >&2
+			echo "run scripts/update-example-snapshots.sh to create it" >&2
+			exit 1
+		elif ! cmp -s "$snapshot" "$artifact"; then
+			echo "error: generated output differs from $snapshot" >&2
+			diff -u "$snapshot" "$artifact" || true
+			echo "run scripts/update-example-snapshots.sh to accept an intentional change" >&2
+			exit 1
+		else
+			echo "Verified $example_name/$script_name -> $asserted_path (golden match)"
+		fi
+	done
 done < <(rg --files "$root_dir/examples" --glob '*.roc' | sort)
 
 if [[ "$example_count" -eq 0 ]]; then

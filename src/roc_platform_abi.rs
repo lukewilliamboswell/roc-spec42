@@ -935,7 +935,7 @@ const _: () = assert!(core::mem::align_of::<AnonStruct5f154a81aee47322>() == 4, 
 pub struct AnonStructD19c6c897d0b2f23 {
     pub handle: RocStr,
     pub metaclass: RocStr,
-    pub name: NoneOrSomeType17,
+    pub name: NoneOrSomeType11,
     pub qualified_name: RocStr,
     pub semantic_id: RocStr,
     pub library_element: bool,
@@ -948,7 +948,7 @@ pub struct AnonStructD19c6c897d0b2f23 {
 pub struct AnonStructD19c6c897d0b2f23 {
     pub handle: RocStr,
     pub metaclass: RocStr,
-    pub name: NoneOrSomeType17,
+    pub name: NoneOrSomeType11,
     pub qualified_name: RocStr,
     pub semantic_id: RocStr,
     pub library_element: bool,
@@ -968,28 +968,28 @@ const _: () = assert!(core::mem::align_of::<AnonStructD19c6c897d0b2f23>() == 4, 
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AnonStruct1ebccf7a1ff71691 {
-    pub declared_name: NoneOrSomeType24,
-    pub direction: NoneOrSomeType24,
-    pub documentation: NoneOrSomeType24,
-    pub effective_name: NoneOrSomeType24,
-    pub evaluated_value: NoneOrSomeType24,
-    pub multiplicity: NoneOrSomeType25,
-    pub owner: NoneOrSomeType27,
-    pub short_name: NoneOrSomeType24,
+    pub declared_name: NoneOrSomeType18,
+    pub direction: NoneOrSomeType18,
+    pub documentation: NoneOrSomeType18,
+    pub effective_name: NoneOrSomeType18,
+    pub evaluated_value: NoneOrSomeType18,
+    pub multiplicity: NoneOrSomeType19,
+    pub owner: NoneOrSomeType21,
+    pub short_name: NoneOrSomeType18,
     pub source_uri: RocStr,
     pub summary: AnonStructD19c6c897d0b2f23,
     pub source_range: AnonStructF854c29f636ef8f8,
     pub abstract_flag: bool,
-    pub composite: NoneOrSomeType23,
+    pub composite: NoneOrSomeType17,
     pub conjugated: bool,
     pub constant: bool,
     pub definition: bool,
     pub derived: bool,
     pub end: bool,
     pub individual: bool,
-    pub ordered: NoneOrSomeType23,
-    pub reference: NoneOrSomeType23,
-    pub unique: NoneOrSomeType23,
+    pub ordered: NoneOrSomeType17,
+    pub reference: NoneOrSomeType17,
+    pub unique: NoneOrSomeType17,
     pub variation: bool,
 }
 
@@ -998,28 +998,28 @@ pub struct AnonStruct1ebccf7a1ff71691 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AnonStruct1ebccf7a1ff71691 {
-    pub declared_name: NoneOrSomeType24,
-    pub direction: NoneOrSomeType24,
-    pub documentation: NoneOrSomeType24,
-    pub effective_name: NoneOrSomeType24,
-    pub evaluated_value: NoneOrSomeType24,
-    pub multiplicity: NoneOrSomeType25,
-    pub owner: NoneOrSomeType27,
-    pub short_name: NoneOrSomeType24,
+    pub declared_name: NoneOrSomeType18,
+    pub direction: NoneOrSomeType18,
+    pub documentation: NoneOrSomeType18,
+    pub effective_name: NoneOrSomeType18,
+    pub evaluated_value: NoneOrSomeType18,
+    pub multiplicity: NoneOrSomeType19,
+    pub owner: NoneOrSomeType21,
+    pub short_name: NoneOrSomeType18,
     pub source_uri: RocStr,
     pub summary: AnonStructD19c6c897d0b2f23,
     pub source_range: AnonStructF854c29f636ef8f8,
     pub abstract_flag: bool,
-    pub composite: NoneOrSomeType23,
+    pub composite: NoneOrSomeType17,
     pub conjugated: bool,
     pub constant: bool,
     pub definition: bool,
     pub derived: bool,
     pub end: bool,
     pub individual: bool,
-    pub ordered: NoneOrSomeType23,
-    pub reference: NoneOrSomeType23,
-    pub unique: NoneOrSomeType23,
+    pub ordered: NoneOrSomeType17,
+    pub reference: NoneOrSomeType17,
+    pub unique: NoneOrSomeType17,
     pub variation: bool,
 }
 
@@ -1037,11 +1037,11 @@ const _: () = assert!(core::mem::align_of::<AnonStruct1ebccf7a1ff71691>() == 4, 
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AnonStructE7b668836e719b96 {
-    pub lower: NoneOrSomeType24,
-    pub upper: NoneOrSomeType24,
+    pub lower: NoneOrSomeType18,
+    pub upper: NoneOrSomeType18,
     pub implied: bool,
     pub ordered: bool,
-    pub unique: NoneOrSomeType23,
+    pub unique: NoneOrSomeType17,
 }
 
 /// Element type for __AnonStruct_e7b668836e719b96
@@ -1049,11 +1049,11 @@ pub struct AnonStructE7b668836e719b96 {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AnonStructE7b668836e719b96 {
-    pub lower: NoneOrSomeType24,
-    pub upper: NoneOrSomeType24,
+    pub lower: NoneOrSomeType18,
+    pub upper: NoneOrSomeType18,
     pub implied: bool,
     pub ordered: bool,
-    pub unique: NoneOrSomeType23,
+    pub unique: NoneOrSomeType17,
 }
 
 #[cfg(target_pointer_width = "64")]
@@ -1127,70 +1127,32 @@ const _: () = assert!(core::mem::size_of::<AnonStruct682d6d8805bd09e9>() == 152,
 #[cfg(target_pointer_width = "32")]
 const _: () = assert!(core::mem::align_of::<AnonStruct682d6d8805bd09e9>() == 4, "AnonStruct682d6d8805bd09e9 alignment mismatch");
 
-/// Tag discriminant for Try.
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ArtifactsEmitResultTag {
-    Err = 0,
-    Ok = 1,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub union ArtifactsEmitResultPayload {
-    pub err: core::mem::ManuallyDrop<RocStr>,
-    pub ok: [u8; 0],
-}
-
-#[cfg(target_pointer_width = "32")]
-#[repr(align(4))]
-#[derive(Clone, Copy)]
-pub struct ArtifactsEmitResultPayloadAlignment;
-
-/// Tag union: Try
+/// Element type for __AnonStruct_3f5ac9322a5c230f
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ArtifactsEmitResult {
-    pub _payload_alignment: [ArtifactsEmitResultPayloadAlignment; 0],
-    pub payload: [u8; 12],
-    pub tag: ArtifactsEmitResultTag,
+pub struct AnonStruct3f5ac9322a5c230f {
+    pub contents: RocListWith<u8, false>,
+    pub file_path: RocStr,
 }
 
-/// Tag union: Try
+/// Element type for __AnonStruct_3f5ac9322a5c230f
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ArtifactsEmitResult {
-    pub payload: ArtifactsEmitResultPayload,
-    pub tag: ArtifactsEmitResultTag,
-}
-
-impl ArtifactsEmitResult {
-    #[cfg(target_pointer_width = "32")]
-    pub fn payload_err(&self) -> RocStr {
-        unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
-    }
-
-    #[cfg(not(target_pointer_width = "32"))]
-    pub fn payload_err(&self) -> RocStr {
-        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.err) }
-    }
-
+pub struct AnonStruct3f5ac9322a5c230f {
+    pub contents: RocListWith<u8, false>,
+    pub file_path: RocStr,
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<ArtifactsEmitResult>() == 32, "ArtifactsEmitResult size mismatch");
+const _: () = assert!(core::mem::size_of::<AnonStruct3f5ac9322a5c230f>() == 48, "AnonStruct3f5ac9322a5c230f size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<ArtifactsEmitResult>() == 8, "ArtifactsEmitResult alignment mismatch");
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(ArtifactsEmitResult, tag) == 24, "ArtifactsEmitResult tag offset mismatch");
+const _: () = assert!(core::mem::align_of::<AnonStruct3f5ac9322a5c230f>() == 8, "AnonStruct3f5ac9322a5c230f alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<ArtifactsEmitResult>() == 16, "ArtifactsEmitResult size mismatch");
+const _: () = assert!(core::mem::size_of::<AnonStruct3f5ac9322a5c230f>() == 24, "AnonStruct3f5ac9322a5c230f size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<ArtifactsEmitResult>() == 4, "ArtifactsEmitResult alignment mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(ArtifactsEmitResult, tag) == 12, "ArtifactsEmitResult tag offset mismatch");
+const _: () = assert!(core::mem::align_of::<AnonStruct3f5ac9322a5c230f>() == 4, "AnonStruct3f5ac9322a5c230f alignment mismatch");
 
 /// Tag union: DebugOrErrorOrInfoOrWarning
 #[repr(u8)]
@@ -1214,14 +1176,14 @@ const _: () = assert!(core::mem::align_of::<DebugOrErrorOrInfoOrWarning>() == 1,
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType9Tag {
+pub enum NoneOrSomeType3Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType9Payload {
+pub union NoneOrSomeType3Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<RocStr>,
 }
@@ -1229,28 +1191,28 @@ pub union NoneOrSomeType9Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType9PayloadAlignment;
+pub struct NoneOrSomeType3PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType9 {
-    pub _payload_alignment: [NoneOrSomeType9PayloadAlignment; 0],
+pub struct NoneOrSomeType3 {
+    pub _payload_alignment: [NoneOrSomeType3PayloadAlignment; 0],
     pub payload: [u8; 12],
-    pub tag: NoneOrSomeType9Tag,
+    pub tag: NoneOrSomeType3Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType9 {
-    pub payload: NoneOrSomeType9Payload,
-    pub tag: NoneOrSomeType9Tag,
+pub struct NoneOrSomeType3 {
+    pub payload: NoneOrSomeType3Payload,
+    pub tag: NoneOrSomeType3Tag,
 }
 
-impl NoneOrSomeType9 {
+impl NoneOrSomeType3 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> RocStr {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
@@ -1264,17 +1226,17 @@ impl NoneOrSomeType9 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType9>() == 32, "NoneOrSomeType9 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType3>() == 32, "NoneOrSomeType3 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType9>() == 8, "NoneOrSomeType9 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType3>() == 8, "NoneOrSomeType3 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType9, tag) == 24, "NoneOrSomeType9 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType3, tag) == 24, "NoneOrSomeType3 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType9>() == 16, "NoneOrSomeType9 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType3>() == 16, "NoneOrSomeType3 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType9>() == 4, "NoneOrSomeType9 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType3>() == 4, "NoneOrSomeType3 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType9, tag) == 12, "NoneOrSomeType9 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType3, tag) == 12, "NoneOrSomeType3 tag offset mismatch");
 
 /// Tag discriminant for Try.
 #[repr(u8)]
@@ -1354,14 +1316,14 @@ const _: () = assert!(core::mem::offset_of!(HostModelChildrenResult, tag) == 12,
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType17Tag {
+pub enum NoneOrSomeType11Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType17Payload {
+pub union NoneOrSomeType11Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<RocStr>,
 }
@@ -1369,28 +1331,28 @@ pub union NoneOrSomeType17Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType17PayloadAlignment;
+pub struct NoneOrSomeType11PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType17 {
-    pub _payload_alignment: [NoneOrSomeType17PayloadAlignment; 0],
+pub struct NoneOrSomeType11 {
+    pub _payload_alignment: [NoneOrSomeType11PayloadAlignment; 0],
     pub payload: [u8; 12],
-    pub tag: NoneOrSomeType17Tag,
+    pub tag: NoneOrSomeType11Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType17 {
-    pub payload: NoneOrSomeType17Payload,
-    pub tag: NoneOrSomeType17Tag,
+pub struct NoneOrSomeType11 {
+    pub payload: NoneOrSomeType11Payload,
+    pub tag: NoneOrSomeType11Tag,
 }
 
-impl NoneOrSomeType17 {
+impl NoneOrSomeType11 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> RocStr {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
@@ -1404,29 +1366,29 @@ impl NoneOrSomeType17 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType17>() == 32, "NoneOrSomeType17 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType11>() == 32, "NoneOrSomeType11 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType17>() == 8, "NoneOrSomeType17 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType11>() == 8, "NoneOrSomeType11 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType17, tag) == 24, "NoneOrSomeType17 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType11, tag) == 24, "NoneOrSomeType11 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType17>() == 16, "NoneOrSomeType17 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType11>() == 16, "NoneOrSomeType11 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType17>() == 4, "NoneOrSomeType17 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType11>() == 4, "NoneOrSomeType11 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType17, tag) == 12, "NoneOrSomeType17 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType11, tag) == 12, "NoneOrSomeType11 tag offset mismatch");
 
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType18Tag {
+pub enum NoneOrSomeType12Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType18Payload {
+pub union NoneOrSomeType12Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<RocStr>,
 }
@@ -1434,28 +1396,28 @@ pub union NoneOrSomeType18Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType18PayloadAlignment;
+pub struct NoneOrSomeType12PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType18 {
-    pub _payload_alignment: [NoneOrSomeType18PayloadAlignment; 0],
+pub struct NoneOrSomeType12 {
+    pub _payload_alignment: [NoneOrSomeType12PayloadAlignment; 0],
     pub payload: [u8; 12],
-    pub tag: NoneOrSomeType18Tag,
+    pub tag: NoneOrSomeType12Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType18 {
-    pub payload: NoneOrSomeType18Payload,
-    pub tag: NoneOrSomeType18Tag,
+pub struct NoneOrSomeType12 {
+    pub payload: NoneOrSomeType12Payload,
+    pub tag: NoneOrSomeType12Tag,
 }
 
-impl NoneOrSomeType18 {
+impl NoneOrSomeType12 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> RocStr {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
@@ -1469,17 +1431,17 @@ impl NoneOrSomeType18 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType18>() == 32, "NoneOrSomeType18 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType12>() == 32, "NoneOrSomeType12 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType18>() == 8, "NoneOrSomeType18 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType12>() == 8, "NoneOrSomeType12 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType18, tag) == 24, "NoneOrSomeType18 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType12, tag) == 24, "NoneOrSomeType12 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType18>() == 16, "NoneOrSomeType18 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType12>() == 16, "NoneOrSomeType12 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType18>() == 4, "NoneOrSomeType18 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType12>() == 4, "NoneOrSomeType12 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType18, tag) == 12, "NoneOrSomeType18 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType12, tag) == 12, "NoneOrSomeType12 tag offset mismatch");
 
 /// Tag discriminant for Try.
 #[repr(u8)]
@@ -1559,14 +1521,14 @@ const _: () = assert!(core::mem::offset_of!(HostModelElementResult, tag) == 320,
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType23Tag {
+pub enum NoneOrSomeType17Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType23Payload {
+pub union NoneOrSomeType17Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<bool>,
 }
@@ -1574,28 +1536,28 @@ pub union NoneOrSomeType23Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(1))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType23PayloadAlignment;
+pub struct NoneOrSomeType17PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType23 {
-    pub _payload_alignment: [NoneOrSomeType23PayloadAlignment; 0],
+pub struct NoneOrSomeType17 {
+    pub _payload_alignment: [NoneOrSomeType17PayloadAlignment; 0],
     pub payload: [u8; 1],
-    pub tag: NoneOrSomeType23Tag,
+    pub tag: NoneOrSomeType17Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType23 {
-    pub payload: NoneOrSomeType23Payload,
-    pub tag: NoneOrSomeType23Tag,
+pub struct NoneOrSomeType17 {
+    pub payload: NoneOrSomeType17Payload,
+    pub tag: NoneOrSomeType17Tag,
 }
 
-impl NoneOrSomeType23 {
+impl NoneOrSomeType17 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> bool {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const bool) }
@@ -1609,29 +1571,29 @@ impl NoneOrSomeType23 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType23>() == 2, "NoneOrSomeType23 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType17>() == 2, "NoneOrSomeType17 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType23>() == 1, "NoneOrSomeType23 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType17>() == 1, "NoneOrSomeType17 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType23, tag) == 1, "NoneOrSomeType23 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType17, tag) == 1, "NoneOrSomeType17 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType23>() == 2, "NoneOrSomeType23 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType17>() == 2, "NoneOrSomeType17 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType23>() == 1, "NoneOrSomeType23 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType17>() == 1, "NoneOrSomeType17 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType23, tag) == 1, "NoneOrSomeType23 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType17, tag) == 1, "NoneOrSomeType17 tag offset mismatch");
 
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType24Tag {
+pub enum NoneOrSomeType18Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType24Payload {
+pub union NoneOrSomeType18Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<RocStr>,
 }
@@ -1639,28 +1601,28 @@ pub union NoneOrSomeType24Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType24PayloadAlignment;
+pub struct NoneOrSomeType18PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType24 {
-    pub _payload_alignment: [NoneOrSomeType24PayloadAlignment; 0],
+pub struct NoneOrSomeType18 {
+    pub _payload_alignment: [NoneOrSomeType18PayloadAlignment; 0],
     pub payload: [u8; 12],
-    pub tag: NoneOrSomeType24Tag,
+    pub tag: NoneOrSomeType18Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType24 {
-    pub payload: NoneOrSomeType24Payload,
-    pub tag: NoneOrSomeType24Tag,
+pub struct NoneOrSomeType18 {
+    pub payload: NoneOrSomeType18Payload,
+    pub tag: NoneOrSomeType18Tag,
 }
 
-impl NoneOrSomeType24 {
+impl NoneOrSomeType18 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> RocStr {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
@@ -1674,29 +1636,29 @@ impl NoneOrSomeType24 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType24>() == 32, "NoneOrSomeType24 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType18>() == 32, "NoneOrSomeType18 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType24>() == 8, "NoneOrSomeType24 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType18>() == 8, "NoneOrSomeType18 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType24, tag) == 24, "NoneOrSomeType24 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType18, tag) == 24, "NoneOrSomeType18 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType24>() == 16, "NoneOrSomeType24 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType18>() == 16, "NoneOrSomeType18 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType24>() == 4, "NoneOrSomeType24 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType18>() == 4, "NoneOrSomeType18 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType24, tag) == 12, "NoneOrSomeType24 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType18, tag) == 12, "NoneOrSomeType18 tag offset mismatch");
 
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType25Tag {
+pub enum NoneOrSomeType19Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType25Payload {
+pub union NoneOrSomeType19Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<AnonStructE7b668836e719b96>,
 }
@@ -1704,28 +1666,28 @@ pub union NoneOrSomeType25Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType25PayloadAlignment;
+pub struct NoneOrSomeType19PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType25 {
-    pub _payload_alignment: [NoneOrSomeType25PayloadAlignment; 0],
+pub struct NoneOrSomeType19 {
+    pub _payload_alignment: [NoneOrSomeType19PayloadAlignment; 0],
     pub payload: [u8; 36],
-    pub tag: NoneOrSomeType25Tag,
+    pub tag: NoneOrSomeType19Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType25 {
-    pub payload: NoneOrSomeType25Payload,
-    pub tag: NoneOrSomeType25Tag,
+pub struct NoneOrSomeType19 {
+    pub payload: NoneOrSomeType19Payload,
+    pub tag: NoneOrSomeType19Tag,
 }
 
-impl NoneOrSomeType25 {
+impl NoneOrSomeType19 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> AnonStructE7b668836e719b96 {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const AnonStructE7b668836e719b96) }
@@ -1739,17 +1701,157 @@ impl NoneOrSomeType25 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType25>() == 80, "NoneOrSomeType25 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType19>() == 80, "NoneOrSomeType19 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType25>() == 8, "NoneOrSomeType25 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType19>() == 8, "NoneOrSomeType19 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType25, tag) == 72, "NoneOrSomeType25 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType19, tag) == 72, "NoneOrSomeType19 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType25>() == 40, "NoneOrSomeType25 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType19>() == 40, "NoneOrSomeType19 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType25>() == 4, "NoneOrSomeType25 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType19>() == 4, "NoneOrSomeType19 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType25, tag) == 36, "NoneOrSomeType25 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType19, tag) == 36, "NoneOrSomeType19 tag offset mismatch");
+
+/// Tag discriminant for NoneOrSome.
+#[repr(u8)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum NoneOrSomeType21Tag {
+    None = 0,
+    Some = 1,
+}
+
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union NoneOrSomeType21Payload {
+    pub none: [u8; 0],
+    pub some: core::mem::ManuallyDrop<AnonStructD19c6c897d0b2f23>,
+}
+
+#[cfg(target_pointer_width = "32")]
+#[repr(align(4))]
+#[derive(Clone, Copy)]
+pub struct NoneOrSomeType21PayloadAlignment;
+
+/// Tag union: NoneOrSome
+#[cfg(target_pointer_width = "32")]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct NoneOrSomeType21 {
+    pub _payload_alignment: [NoneOrSomeType21PayloadAlignment; 0],
+    pub payload: [u8; 68],
+    pub tag: NoneOrSomeType21Tag,
+}
+
+/// Tag union: NoneOrSome
+#[cfg(not(target_pointer_width = "32"))]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct NoneOrSomeType21 {
+    pub payload: NoneOrSomeType21Payload,
+    pub tag: NoneOrSomeType21Tag,
+}
+
+impl NoneOrSomeType21 {
+    #[cfg(target_pointer_width = "32")]
+    pub fn payload_some(&self) -> AnonStructD19c6c897d0b2f23 {
+        unsafe { core::ptr::read(self.payload.as_ptr() as *const AnonStructD19c6c897d0b2f23) }
+    }
+
+    #[cfg(not(target_pointer_width = "32"))]
+    pub fn payload_some(&self) -> AnonStructD19c6c897d0b2f23 {
+        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.some) }
+    }
+
+}
+
+#[cfg(target_pointer_width = "64")]
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType21>() == 144, "NoneOrSomeType21 size mismatch");
+#[cfg(target_pointer_width = "64")]
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType21>() == 8, "NoneOrSomeType21 alignment mismatch");
+#[cfg(target_pointer_width = "64")]
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType21, tag) == 136, "NoneOrSomeType21 tag offset mismatch");
+#[cfg(target_pointer_width = "32")]
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType21>() == 72, "NoneOrSomeType21 size mismatch");
+#[cfg(target_pointer_width = "32")]
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType21>() == 4, "NoneOrSomeType21 alignment mismatch");
+#[cfg(target_pointer_width = "32")]
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType21, tag) == 68, "NoneOrSomeType21 tag offset mismatch");
+
+/// Tag discriminant for Try.
+#[repr(u8)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum HostModelTypedByResultTag {
+    Err = 0,
+    Ok = 1,
+}
+
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union HostModelTypedByResultPayload {
+    pub err: core::mem::ManuallyDrop<RocStr>,
+    pub ok: core::mem::ManuallyDrop<NoneOrSomeType27>,
+}
+
+#[cfg(target_pointer_width = "32")]
+#[repr(align(4))]
+#[derive(Clone, Copy)]
+pub struct HostModelTypedByResultPayloadAlignment;
+
+/// Tag union: Try
+#[cfg(target_pointer_width = "32")]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct HostModelTypedByResult {
+    pub _payload_alignment: [HostModelTypedByResultPayloadAlignment; 0],
+    pub payload: [u8; 72],
+    pub tag: HostModelTypedByResultTag,
+}
+
+/// Tag union: Try
+#[cfg(not(target_pointer_width = "32"))]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct HostModelTypedByResult {
+    pub payload: HostModelTypedByResultPayload,
+    pub tag: HostModelTypedByResultTag,
+}
+
+impl HostModelTypedByResult {
+    #[cfg(target_pointer_width = "32")]
+    pub fn payload_err(&self) -> RocStr {
+        unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
+    }
+
+    #[cfg(not(target_pointer_width = "32"))]
+    pub fn payload_err(&self) -> RocStr {
+        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.err) }
+    }
+
+    #[cfg(target_pointer_width = "32")]
+    pub fn payload_ok(&self) -> NoneOrSomeType27 {
+        unsafe { core::ptr::read(self.payload.as_ptr() as *const NoneOrSomeType27) }
+    }
+
+    #[cfg(not(target_pointer_width = "32"))]
+    pub fn payload_ok(&self) -> NoneOrSomeType27 {
+        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.ok) }
+    }
+
+}
+
+#[cfg(target_pointer_width = "64")]
+const _: () = assert!(core::mem::size_of::<HostModelTypedByResult>() == 152, "HostModelTypedByResult size mismatch");
+#[cfg(target_pointer_width = "64")]
+const _: () = assert!(core::mem::align_of::<HostModelTypedByResult>() == 8, "HostModelTypedByResult alignment mismatch");
+#[cfg(target_pointer_width = "64")]
+const _: () = assert!(core::mem::offset_of!(HostModelTypedByResult, tag) == 144, "HostModelTypedByResult tag offset mismatch");
+#[cfg(target_pointer_width = "32")]
+const _: () = assert!(core::mem::size_of::<HostModelTypedByResult>() == 76, "HostModelTypedByResult size mismatch");
+#[cfg(target_pointer_width = "32")]
+const _: () = assert!(core::mem::align_of::<HostModelTypedByResult>() == 4, "HostModelTypedByResult alignment mismatch");
+#[cfg(target_pointer_width = "32")]
+const _: () = assert!(core::mem::offset_of!(HostModelTypedByResult, tag) == 72, "HostModelTypedByResult tag offset mismatch");
 
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
@@ -1816,157 +1918,17 @@ const _: () = assert!(core::mem::align_of::<NoneOrSomeType27>() == 4, "NoneOrSom
 #[cfg(target_pointer_width = "32")]
 const _: () = assert!(core::mem::offset_of!(NoneOrSomeType27, tag) == 68, "NoneOrSomeType27 tag offset mismatch");
 
-/// Tag discriminant for Try.
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum HostModelTypedByResultTag {
-    Err = 0,
-    Ok = 1,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub union HostModelTypedByResultPayload {
-    pub err: core::mem::ManuallyDrop<RocStr>,
-    pub ok: core::mem::ManuallyDrop<NoneOrSomeType33>,
-}
-
-#[cfg(target_pointer_width = "32")]
-#[repr(align(4))]
-#[derive(Clone, Copy)]
-pub struct HostModelTypedByResultPayloadAlignment;
-
-/// Tag union: Try
-#[cfg(target_pointer_width = "32")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct HostModelTypedByResult {
-    pub _payload_alignment: [HostModelTypedByResultPayloadAlignment; 0],
-    pub payload: [u8; 72],
-    pub tag: HostModelTypedByResultTag,
-}
-
-/// Tag union: Try
-#[cfg(not(target_pointer_width = "32"))]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct HostModelTypedByResult {
-    pub payload: HostModelTypedByResultPayload,
-    pub tag: HostModelTypedByResultTag,
-}
-
-impl HostModelTypedByResult {
-    #[cfg(target_pointer_width = "32")]
-    pub fn payload_err(&self) -> RocStr {
-        unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
-    }
-
-    #[cfg(not(target_pointer_width = "32"))]
-    pub fn payload_err(&self) -> RocStr {
-        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.err) }
-    }
-
-    #[cfg(target_pointer_width = "32")]
-    pub fn payload_ok(&self) -> NoneOrSomeType33 {
-        unsafe { core::ptr::read(self.payload.as_ptr() as *const NoneOrSomeType33) }
-    }
-
-    #[cfg(not(target_pointer_width = "32"))]
-    pub fn payload_ok(&self) -> NoneOrSomeType33 {
-        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.ok) }
-    }
-
-}
-
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<HostModelTypedByResult>() == 152, "HostModelTypedByResult size mismatch");
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<HostModelTypedByResult>() == 8, "HostModelTypedByResult alignment mismatch");
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(HostModelTypedByResult, tag) == 144, "HostModelTypedByResult tag offset mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<HostModelTypedByResult>() == 76, "HostModelTypedByResult size mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<HostModelTypedByResult>() == 4, "HostModelTypedByResult alignment mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(HostModelTypedByResult, tag) == 72, "HostModelTypedByResult tag offset mismatch");
-
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType33Tag {
+pub enum NoneOrSomeType30Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType33Payload {
-    pub none: [u8; 0],
-    pub some: core::mem::ManuallyDrop<AnonStructD19c6c897d0b2f23>,
-}
-
-#[cfg(target_pointer_width = "32")]
-#[repr(align(4))]
-#[derive(Clone, Copy)]
-pub struct NoneOrSomeType33PayloadAlignment;
-
-/// Tag union: NoneOrSome
-#[cfg(target_pointer_width = "32")]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct NoneOrSomeType33 {
-    pub _payload_alignment: [NoneOrSomeType33PayloadAlignment; 0],
-    pub payload: [u8; 68],
-    pub tag: NoneOrSomeType33Tag,
-}
-
-/// Tag union: NoneOrSome
-#[cfg(not(target_pointer_width = "32"))]
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct NoneOrSomeType33 {
-    pub payload: NoneOrSomeType33Payload,
-    pub tag: NoneOrSomeType33Tag,
-}
-
-impl NoneOrSomeType33 {
-    #[cfg(target_pointer_width = "32")]
-    pub fn payload_some(&self) -> AnonStructD19c6c897d0b2f23 {
-        unsafe { core::ptr::read(self.payload.as_ptr() as *const AnonStructD19c6c897d0b2f23) }
-    }
-
-    #[cfg(not(target_pointer_width = "32"))]
-    pub fn payload_some(&self) -> AnonStructD19c6c897d0b2f23 {
-        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.some) }
-    }
-
-}
-
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType33>() == 144, "NoneOrSomeType33 size mismatch");
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType33>() == 8, "NoneOrSomeType33 alignment mismatch");
-#[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType33, tag) == 136, "NoneOrSomeType33 tag offset mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType33>() == 72, "NoneOrSomeType33 size mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType33>() == 4, "NoneOrSomeType33 alignment mismatch");
-#[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType33, tag) == 68, "NoneOrSomeType33 tag offset mismatch");
-
-/// Tag discriminant for NoneOrSome.
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType36Tag {
-    None = 0,
-    Some = 1,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub union NoneOrSomeType36Payload {
+pub union NoneOrSomeType30Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<RocStr>,
 }
@@ -1974,28 +1936,28 @@ pub union NoneOrSomeType36Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType36PayloadAlignment;
+pub struct NoneOrSomeType30PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType36 {
-    pub _payload_alignment: [NoneOrSomeType36PayloadAlignment; 0],
+pub struct NoneOrSomeType30 {
+    pub _payload_alignment: [NoneOrSomeType30PayloadAlignment; 0],
     pub payload: [u8; 12],
-    pub tag: NoneOrSomeType36Tag,
+    pub tag: NoneOrSomeType30Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType36 {
-    pub payload: NoneOrSomeType36Payload,
-    pub tag: NoneOrSomeType36Tag,
+pub struct NoneOrSomeType30 {
+    pub payload: NoneOrSomeType30Payload,
+    pub tag: NoneOrSomeType30Tag,
 }
 
-impl NoneOrSomeType36 {
+impl NoneOrSomeType30 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> RocStr {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
@@ -2009,17 +1971,17 @@ impl NoneOrSomeType36 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType36>() == 32, "NoneOrSomeType36 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType30>() == 32, "NoneOrSomeType30 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType36>() == 8, "NoneOrSomeType36 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType30>() == 8, "NoneOrSomeType30 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType36, tag) == 24, "NoneOrSomeType36 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType30, tag) == 24, "NoneOrSomeType30 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType36>() == 16, "NoneOrSomeType36 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType30>() == 16, "NoneOrSomeType30 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType36>() == 4, "NoneOrSomeType36 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType30>() == 4, "NoneOrSomeType30 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType36, tag) == 12, "NoneOrSomeType36 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType30, tag) == 12, "NoneOrSomeType30 tag offset mismatch");
 
 /// Tag discriminant for Try.
 #[repr(u8)]
@@ -2099,14 +2061,14 @@ const _: () = assert!(core::mem::offset_of!(HostModelRelationshipsResult, tag) =
 /// Tag discriminant for NoneOrSome.
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum NoneOrSomeType43Tag {
+pub enum NoneOrSomeType37Tag {
     None = 0,
     Some = 1,
 }
 
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub union NoneOrSomeType43Payload {
+pub union NoneOrSomeType37Payload {
     pub none: [u8; 0],
     pub some: core::mem::ManuallyDrop<RocStr>,
 }
@@ -2114,28 +2076,28 @@ pub union NoneOrSomeType43Payload {
 #[cfg(target_pointer_width = "32")]
 #[repr(align(4))]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType43PayloadAlignment;
+pub struct NoneOrSomeType37PayloadAlignment;
 
 /// Tag union: NoneOrSome
 #[cfg(target_pointer_width = "32")]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType43 {
-    pub _payload_alignment: [NoneOrSomeType43PayloadAlignment; 0],
+pub struct NoneOrSomeType37 {
+    pub _payload_alignment: [NoneOrSomeType37PayloadAlignment; 0],
     pub payload: [u8; 12],
-    pub tag: NoneOrSomeType43Tag,
+    pub tag: NoneOrSomeType37Tag,
 }
 
 /// Tag union: NoneOrSome
 #[cfg(not(target_pointer_width = "32"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct NoneOrSomeType43 {
-    pub payload: NoneOrSomeType43Payload,
-    pub tag: NoneOrSomeType43Tag,
+pub struct NoneOrSomeType37 {
+    pub payload: NoneOrSomeType37Payload,
+    pub tag: NoneOrSomeType37Tag,
 }
 
-impl NoneOrSomeType43 {
+impl NoneOrSomeType37 {
     #[cfg(target_pointer_width = "32")]
     pub fn payload_some(&self) -> RocStr {
         unsafe { core::ptr::read(self.payload.as_ptr() as *const RocStr) }
@@ -2149,17 +2111,17 @@ impl NoneOrSomeType43 {
 }
 
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType43>() == 32, "NoneOrSomeType43 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType37>() == 32, "NoneOrSomeType37 size mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType43>() == 8, "NoneOrSomeType43 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType37>() == 8, "NoneOrSomeType37 alignment mismatch");
 #[cfg(target_pointer_width = "64")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType43, tag) == 24, "NoneOrSomeType43 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType37, tag) == 24, "NoneOrSomeType37 tag offset mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::size_of::<NoneOrSomeType43>() == 16, "NoneOrSomeType43 size mismatch");
+const _: () = assert!(core::mem::size_of::<NoneOrSomeType37>() == 16, "NoneOrSomeType37 size mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::align_of::<NoneOrSomeType43>() == 4, "NoneOrSomeType43 alignment mismatch");
+const _: () = assert!(core::mem::align_of::<NoneOrSomeType37>() == 4, "NoneOrSomeType37 alignment mismatch");
 #[cfg(target_pointer_width = "32")]
-const _: () = assert!(core::mem::offset_of!(NoneOrSomeType43, tag) == 12, "NoneOrSomeType43 tag offset mismatch");
+const _: () = assert!(core::mem::offset_of!(NoneOrSomeType37, tag) == 12, "NoneOrSomeType37 tag offset mismatch");
 
 /// Tag discriminant for Try.
 #[repr(u8)]
@@ -2173,7 +2135,7 @@ pub enum GenerateForHostResultTag {
 #[derive(Clone, Copy)]
 pub union GenerateForHostResultPayload {
     pub err: core::mem::ManuallyDrop<RocStr>,
-    pub ok: [u8; 0],
+    pub ok: core::mem::ManuallyDrop<RocList<AnonStruct3f5ac9322a5c230f>>,
 }
 
 #[cfg(target_pointer_width = "32")]
@@ -2209,6 +2171,16 @@ impl GenerateForHostResult {
     #[cfg(not(target_pointer_width = "32"))]
     pub fn payload_err(&self) -> RocStr {
         unsafe { core::mem::ManuallyDrop::into_inner(self.payload.err) }
+    }
+
+    #[cfg(target_pointer_width = "32")]
+    pub fn payload_ok(&self) -> RocList<AnonStruct3f5ac9322a5c230f> {
+        unsafe { core::ptr::read(self.payload.as_ptr() as *const RocList<AnonStruct3f5ac9322a5c230f>) }
+    }
+
+    #[cfg(not(target_pointer_width = "32"))]
+    pub fn payload_ok(&self) -> RocList<AnonStruct3f5ac9322a5c230f> {
+        unsafe { core::mem::ManuallyDrop::into_inner(self.payload.ok) }
     }
 
 }
@@ -2257,16 +2229,6 @@ const _: () = assert!(core::mem::size_of::<HostModelInfoRetRecord>() == 36, "Hos
 #[cfg(target_pointer_width = "32")]
 const _: () = assert!(core::mem::align_of::<HostModelInfoRetRecord>() == 4, "HostModelInfoRetRecord alignment mismatch");
 
-/// Arguments for Artifacts.emit!
-/// Roc signature: Str, List(U8) => Try({}, Str)
-/// Refcounted fields are owned by the hosted function.
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ArtifactsEmitArgs {
-    pub arg0: RocStr,
-    pub arg1: RocListWith<u8, false>,
-}
-
 /// Arguments for HostDiagnostics.log!
 /// Roc signature: [Debug, Error, Info, Warning], Str => {}
 /// Refcounted fields are owned by the hosted function.
@@ -2285,7 +2247,7 @@ pub struct HostDiagnosticsLogArgs {
 pub struct HostDiagnosticsReportArgs {
     pub arg0: DebugOrErrorOrInfoOrWarning,
     pub arg1: RocStr,
-    pub arg2: NoneOrSomeType9,
+    pub arg2: NoneOrSomeType3,
 }
 
 /// Arguments for HostModel.children!
@@ -2321,7 +2283,7 @@ pub struct HostModelElementArgs {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct HostModelFindArgs {
-    pub arg0: NoneOrSomeType18,
+    pub arg0: NoneOrSomeType12,
 }
 
 /// Arguments for HostModel.relationships!
@@ -2344,9 +2306,9 @@ pub struct HostModelTypedByArgs {
 
 // Platform Type Aliases
 
-pub type NoneOrSome = NoneOrSomeType9;
-pub type NoneOrSomePayload = NoneOrSomeType9Payload;
-pub type NoneOrSomeTag = NoneOrSomeType9Tag;
+pub type NoneOrSome = NoneOrSomeType3;
+pub type NoneOrSomePayload = NoneOrSomeType3Payload;
+pub type NoneOrSomeTag = NoneOrSomeType3Tag;
 pub type HostModelChildrenOk = AnonStructD19c6c897d0b2f23;
 pub type HostModelEffectiveFeaturesResult = HostModelChildrenResult;
 pub type HostModelEffectiveFeaturesResultPayload = HostModelChildrenResultPayload;
@@ -2368,47 +2330,13 @@ pub type HostModelRootsResult = HostModelChildrenResult;
 pub type HostModelRootsResultPayload = HostModelChildrenResultPayload;
 pub type HostModelRootsResultTag = HostModelChildrenResultTag;
 pub type HostModelRootsOk = AnonStructD19c6c897d0b2f23;
-pub type HostModelTypedByOk = NoneOrSomeType33;
-pub type HostModelTypedByOkPayload = NoneOrSomeType33Payload;
-pub type HostModelTypedByOkTag = NoneOrSomeType33Tag;
+pub type HostModelTypedByOk = NoneOrSomeType27;
+pub type HostModelTypedByOkPayload = NoneOrSomeType27Payload;
+pub type HostModelTypedByOkTag = NoneOrSomeType27Tag;
 pub type HostModelTypedByOkSome = AnonStructD19c6c897d0b2f23;
+pub type GenerateForHostOk = AnonStruct3f5ac9322a5c230f;
 
 // Generated Refcount Helpers
-
-impl ArtifactsEmitResult {
-    /// Recursively decrement Roc-owned payloads.
-    ///
-    /// # Safety
-    /// `self` must own one live Roc reference for each refcounted payload.
-    pub unsafe fn decref(self, roc_host: &RocHost) {
-        let value = self;
-        let _ = roc_host;
-        match value.tag {
-            ArtifactsEmitResultTag::Err => {
-                let payload = value.payload_err();
-                unsafe { payload.decref(roc_host); }
-            },
-            ArtifactsEmitResultTag::Ok => {},
-        }
-    }
-
-    /// Increment Roc-owned payloads.
-    ///
-    /// # Safety
-    /// `self` must point at live Roc allocations. The retained references must
-    /// be balanced by later decrefs.
-    pub unsafe fn incref(self, amount: isize) {
-        let value = self;
-        let _ = amount;
-        match value.tag {
-            ArtifactsEmitResultTag::Err => {
-                let payload = value.payload_err();
-                unsafe { payload.incref(amount); }
-            },
-            ArtifactsEmitResultTag::Ok => {},
-        }
-    }
-}
 
 impl DebugOrErrorOrInfoOrWarning {
     /// Recursively decrement Roc-owned payloads.
@@ -2431,7 +2359,7 @@ impl DebugOrErrorOrInfoOrWarning {
     }
 }
 
-impl NoneOrSomeType9 {
+impl NoneOrSomeType3 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2440,8 +2368,8 @@ impl NoneOrSomeType9 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType9Tag::None => {},
-            NoneOrSomeType9Tag::Some => {
+            NoneOrSomeType3Tag::None => {},
+            NoneOrSomeType3Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2457,8 +2385,8 @@ impl NoneOrSomeType9 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType9Tag::None => {},
-            NoneOrSomeType9Tag::Some => {
+            NoneOrSomeType3Tag::None => {},
+            NoneOrSomeType3Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2570,7 +2498,7 @@ impl AnonStructD19c6c897d0b2f23 {
     }
 }
 
-impl NoneOrSomeType17 {
+impl NoneOrSomeType11 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2579,8 +2507,8 @@ impl NoneOrSomeType17 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType17Tag::None => {},
-            NoneOrSomeType17Tag::Some => {
+            NoneOrSomeType11Tag::None => {},
+            NoneOrSomeType11Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2596,8 +2524,8 @@ impl NoneOrSomeType17 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType17Tag::None => {},
-            NoneOrSomeType17Tag::Some => {
+            NoneOrSomeType11Tag::None => {},
+            NoneOrSomeType11Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2605,7 +2533,7 @@ impl NoneOrSomeType17 {
     }
 }
 
-impl NoneOrSomeType18 {
+impl NoneOrSomeType12 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2614,8 +2542,8 @@ impl NoneOrSomeType18 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType18Tag::None => {},
-            NoneOrSomeType18Tag::Some => {
+            NoneOrSomeType12Tag::None => {},
+            NoneOrSomeType12Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2631,8 +2559,8 @@ impl NoneOrSomeType18 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType18Tag::None => {},
-            NoneOrSomeType18Tag::Some => {
+            NoneOrSomeType12Tag::None => {},
+            NoneOrSomeType12Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2730,7 +2658,7 @@ impl AnonStruct1ebccf7a1ff71691 {
     }
 }
 
-impl NoneOrSomeType23 {
+impl NoneOrSomeType17 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2739,8 +2667,8 @@ impl NoneOrSomeType23 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType23Tag::None => {},
-            NoneOrSomeType23Tag::Some => {},
+            NoneOrSomeType17Tag::None => {},
+            NoneOrSomeType17Tag::Some => {},
         }
     }
 
@@ -2753,13 +2681,13 @@ impl NoneOrSomeType23 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType23Tag::None => {},
-            NoneOrSomeType23Tag::Some => {},
+            NoneOrSomeType17Tag::None => {},
+            NoneOrSomeType17Tag::Some => {},
         }
     }
 }
 
-impl NoneOrSomeType24 {
+impl NoneOrSomeType18 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2768,8 +2696,8 @@ impl NoneOrSomeType24 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType24Tag::None => {},
-            NoneOrSomeType24Tag::Some => {
+            NoneOrSomeType18Tag::None => {},
+            NoneOrSomeType18Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2785,8 +2713,8 @@ impl NoneOrSomeType24 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType24Tag::None => {},
-            NoneOrSomeType24Tag::Some => {
+            NoneOrSomeType18Tag::None => {},
+            NoneOrSomeType18Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2794,7 +2722,7 @@ impl NoneOrSomeType24 {
     }
 }
 
-impl NoneOrSomeType25 {
+impl NoneOrSomeType19 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2803,8 +2731,8 @@ impl NoneOrSomeType25 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType25Tag::None => {},
-            NoneOrSomeType25Tag::Some => {
+            NoneOrSomeType19Tag::None => {},
+            NoneOrSomeType19Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2820,8 +2748,8 @@ impl NoneOrSomeType25 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType25Tag::None => {},
-            NoneOrSomeType25Tag::Some => {
+            NoneOrSomeType19Tag::None => {},
+            NoneOrSomeType19Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2854,7 +2782,7 @@ impl AnonStructE7b668836e719b96 {
     }
 }
 
-impl NoneOrSomeType27 {
+impl NoneOrSomeType21 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2863,8 +2791,8 @@ impl NoneOrSomeType27 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType27Tag::None => {},
-            NoneOrSomeType27Tag::Some => {
+            NoneOrSomeType21Tag::None => {},
+            NoneOrSomeType21Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2880,8 +2808,8 @@ impl NoneOrSomeType27 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType27Tag::None => {},
-            NoneOrSomeType27Tag::Some => {
+            NoneOrSomeType21Tag::None => {},
+            NoneOrSomeType21Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2953,7 +2881,7 @@ impl HostModelTypedByResult {
     }
 }
 
-impl NoneOrSomeType33 {
+impl NoneOrSomeType27 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2962,8 +2890,8 @@ impl NoneOrSomeType33 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType33Tag::None => {},
-            NoneOrSomeType33Tag::Some => {
+            NoneOrSomeType27Tag::None => {},
+            NoneOrSomeType27Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -2979,8 +2907,8 @@ impl NoneOrSomeType33 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType33Tag::None => {},
-            NoneOrSomeType33Tag::Some => {
+            NoneOrSomeType27Tag::None => {},
+            NoneOrSomeType27Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -2988,7 +2916,7 @@ impl NoneOrSomeType33 {
     }
 }
 
-impl NoneOrSomeType36 {
+impl NoneOrSomeType30 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -2997,8 +2925,8 @@ impl NoneOrSomeType36 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType36Tag::None => {},
-            NoneOrSomeType36Tag::Some => {
+            NoneOrSomeType30Tag::None => {},
+            NoneOrSomeType30Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -3014,8 +2942,8 @@ impl NoneOrSomeType36 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType36Tag::None => {},
-            NoneOrSomeType36Tag::Some => {
+            NoneOrSomeType30Tag::None => {},
+            NoneOrSomeType30Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -3098,7 +3026,7 @@ impl AnonStruct682d6d8805bd09e9 {
     }
 }
 
-impl NoneOrSomeType43 {
+impl NoneOrSomeType37 {
     /// Recursively decrement Roc-owned payloads.
     ///
     /// # Safety
@@ -3107,8 +3035,8 @@ impl NoneOrSomeType43 {
         let value = self;
         let _ = roc_host;
         match value.tag {
-            NoneOrSomeType43Tag::None => {},
-            NoneOrSomeType43Tag::Some => {
+            NoneOrSomeType37Tag::None => {},
+            NoneOrSomeType37Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.decref(roc_host); }
             },
@@ -3124,8 +3052,8 @@ impl NoneOrSomeType43 {
         let value = self;
         let _ = amount;
         match value.tag {
-            NoneOrSomeType43Tag::None => {},
-            NoneOrSomeType43Tag::Some => {
+            NoneOrSomeType37Tag::None => {},
+            NoneOrSomeType37Tag::Some => {
                 let payload = value.payload_some();
                 unsafe { payload.incref(amount); }
             },
@@ -3146,7 +3074,19 @@ impl GenerateForHostResult {
                 let payload = value.payload_err();
                 unsafe { payload.decref(roc_host); }
             },
-            GenerateForHostResultTag::Ok => {},
+            GenerateForHostResultTag::Ok => {
+                let payload = value.payload_ok();
+                {
+                    let list = payload;
+                    if list.has_one_ref() {
+                        for item_ref in list.allocation_items() {
+                            let item = *item_ref;
+                                unsafe { item.decref(roc_host); }
+                        }
+                    }
+                    unsafe { list.decref(roc_host); }
+                }
+            },
         }
     }
 
@@ -3163,8 +3103,34 @@ impl GenerateForHostResult {
                 let payload = value.payload_err();
                 unsafe { payload.incref(amount); }
             },
-            GenerateForHostResultTag::Ok => {},
+            GenerateForHostResultTag::Ok => {
+                let payload = value.payload_ok();
+                unsafe { payload.incref(amount); }
+            },
         }
+    }
+}
+
+impl AnonStruct3f5ac9322a5c230f {
+    /// Recursively decrement Roc-owned fields.
+    ///
+    /// # Safety
+    /// `self` must own one live Roc reference for each refcounted field.
+    pub unsafe fn decref(self, roc_host: &RocHost) {
+        let value = self;
+        unsafe { value.contents.decref(roc_host); }
+        unsafe { value.file_path.decref(roc_host); }
+    }
+
+    /// Increment Roc-owned fields.
+    ///
+    /// # Safety
+    /// `self` must point at live Roc allocations. The retained references must
+    /// be balanced by later decrefs.
+    pub unsafe fn incref(self, amount: isize) {
+        let value = self;
+        unsafe { value.contents.incref(amount); }
+        unsafe { value.file_path.incref(amount); }
     }
 }
 
@@ -3190,17 +3156,13 @@ unsafe extern "C" {
 
 #[allow(improper_ctypes)]
 unsafe extern "C" {
-    /// Hosted symbol for Artifacts.emit!
-    /// Roc signature: Str, List(U8) => Try({}, Str)
-    pub fn roc_artifacts_emit(arg0: RocStr, arg1: RocListWith<u8, false>) -> ArtifactsEmitResult;
-
     /// Hosted symbol for HostDiagnostics.log!
     /// Roc signature: [Debug, Error, Info, Warning], Str => {}
     pub fn roc_diagnostics_log(arg0: DebugOrErrorOrInfoOrWarning, arg1: RocStr);
 
     /// Hosted symbol for HostDiagnostics.report!
     /// Roc signature: [Debug, Error, Info, Warning], Str, [None, Some(Str)] => {}
-    pub fn roc_diagnostics_report(arg0: DebugOrErrorOrInfoOrWarning, arg1: RocStr, arg2: NoneOrSomeType9);
+    pub fn roc_diagnostics_report(arg0: DebugOrErrorOrInfoOrWarning, arg1: RocStr, arg2: NoneOrSomeType3);
 
     /// Hosted symbol for HostModel.children!
     /// Roc signature: Str => Try(List({ handle : Str, library_element : Bool, metaclass : Str, name : [None, Some(Str)], qualified_name : Str, semantic_id : Str }), Str)
@@ -3216,7 +3178,7 @@ unsafe extern "C" {
 
     /// Hosted symbol for HostModel.find!
     /// Roc signature: [None, Some(Str)] => Try(List({ handle : Str, library_element : Bool, metaclass : Str, name : [None, Some(Str)], qualified_name : Str, semantic_id : Str }), Str)
-    pub fn roc_model_find(arg0: NoneOrSomeType18) -> HostModelChildrenResult;
+    pub fn roc_model_find(arg0: NoneOrSomeType12) -> HostModelChildrenResult;
 
     /// Hosted symbol for HostModel.info!
     /// Roc signature: {} => { model_digest : Str, semantic_api_version : Str, spec42_version : Str }

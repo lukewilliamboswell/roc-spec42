@@ -14,7 +14,6 @@ roc bundle \
 	"$root_dir/platform/main.roc" \
 	"$root_dir/platform/Model.roc" \
 	"$root_dir/platform/HostModel.roc" \
-	"$root_dir/platform/Artifacts.roc" \
 	"$root_dir/platform/Diagnostics.roc" \
 	"$root_dir/platform/HostDiagnostics.roc" \
 	"$host" \
