@@ -23,8 +23,11 @@ spec42 --no-stdlib generate vcrm.wasm examples/electric_vehicle/model.sysml --ou
 ```
 
 The simulation manifest demonstrates one plugin returning multiple files in different directories.
-The HTML outputs have no external assets or network dependencies. DOT files can be rendered with
-Graphviz, and CSV files open directly in spreadsheet and requirements-management workflows.
+The HTML generators import their sibling `.html` templates at compile time and replace explicit
+`{{TAG}}` values with model-derived content. This keeps the HTML, CSS, and JavaScript pleasant to
+edit without adding runtime file access. The generated pages have no external assets or network
+dependencies. DOT files can be rendered with Graphviz, and CSV files open directly in spreadsheet
+and requirements-management workflows.
 
 Each model's `output/` directory contains the committed result of every script so the examples can
 be inspected without installing Roc or Spec42. The packaged end-to-end test compares regenerated

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Ground station operations</title>
+  <style>
+    body {
+      font: 15px system-ui;
+      margin: 0;
+      background: #071525;
+      color: #dbeafe;
+    }
+
+    header {
+      padding: 2rem 5vw;
+      background: linear-gradient(120deg, #0f2f54, #075985);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .kpis {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .kpi {
+      background: #102a43;
+      padding: 1rem 1.5rem;
+      border-radius: 0.6rem;
+      min-width: 130px;
+    }
+
+    .kpi b {
+      font-size: 2rem;
+      display: block;
+      color: #38bdf8;
+    }
+
+    section {
+      margin-top: 2rem;
+      background: #0d2238;
+      padding: 1.2rem;
+      border-radius: 0.7rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 0.55rem;
+      border-bottom: 1px solid #284866;
+    }
+
+    code {
+      color: #7dd3fc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Satellite ground-station operations</h1>
+    <p>Configuration snapshot {{MODEL_DIGEST}}</p>
+  </header>
+  <main>
+    <div class="kpis">
+      <div class="kpi"><b>{{SYSTEM_COUNT}}</b>systems</div>
+      <div class="kpi"><b>{{PORT_COUNT}}</b>interfaces</div>
+      <div class="kpi"><b>{{ACTIVITY_COUNT}}</b>pass activities</div>
+      <div class="kpi"><b>{{REQUIREMENT_COUNT}}</b>critical requirements</div>
+    </div>
+
+    <section>
+      <h2>Operational sequence catalogue</h2>
+      <table>{{ACTIVITY_ROWS}}</table>
+    </section>
+
+    <section>
+      <h2>Ground segment assets</h2>
+      <table>{{SYSTEM_ROWS}}</table>
+    </section>
+
+    <section>
+      <h2>External and internal interfaces</h2>
+      <table>{{PORT_ROWS}}</table>
+    </section>
+  </main>
+</body>
+</html>

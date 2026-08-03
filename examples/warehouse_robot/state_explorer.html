@@ -76,7 +76,7 @@
       </section>
     </main>
     <script>
-      const edges = [{from:"blocked",to:"navigatingToPick"},{from:"booting",to:"idle"},{from:"charging",to:"idle"},{from:"dropping",to:"idle"},{from:"faulted",to:"booting"},{from:"idle",to:"charging"},{from:"idle",to:"navigatingToPick"},{from:"navigatingToDrop",to:"dropping"},{from:"navigatingToPick",to:"blocked"},{from:"navigatingToPick",to:"faulted"},{from:"navigatingToPick",to:"picking"},{from:"picking",to:"navigatingToDrop"}];
+      const edges = [{{EDGES}}];
       let current = "booting";
       let history = [];
       const state = document.querySelector("#state");

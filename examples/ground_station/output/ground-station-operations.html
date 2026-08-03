@@ -1,17 +1,102 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Ground station operations</title>
-<style>body{font:15px system-ui;margin:0;background:#071525;color:#dbeafe}header{padding:2rem 5vw;background:linear-gradient(120deg,#0f2f54,#075985)}main{max-width:1050px;margin:auto;padding:2rem}.kpis{display:flex;gap:1rem;flex-wrap:wrap}.kpi{background:#102a43;padding:1rem 1.5rem;border-radius:.6rem;min-width:130px}.kpi b{font-size:2rem;display:block;color:#38bdf8}section{margin-top:2rem;background:#0d2238;padding:1.2rem;border-radius:.7rem}table{width:100%;border-collapse:collapse}td{padding:.55rem;border-bottom:1px solid #284866}code{color:#7dd3fc}</style>
-<header><h1>Satellite ground-station operations</h1><p>Configuration snapshot sha256:a461a40d36f0e1bc51c0738b8e0a2cc62e568986661bac5f9c7a8bb392655961</p></header><main>
-<div class="kpis"><div class="kpi"><b>5</b>systems</div><div class="kpi"><b>9</b>interfaces</div><div class="kpi"><b>4</b>pass activities</div><div class="kpi"><b>2</b>critical requirements</div></div>
-<section><h2>Operational sequence catalogue</h2><table><tr><td>AcquireSpacecraft</td><td><code>GroundStation::AcquireSpacecraft</code></td></tr>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Ground station operations</title>
+  <style>
+    body {
+      font: 15px system-ui;
+      margin: 0;
+      background: #071525;
+      color: #dbeafe;
+    }
+
+    header {
+      padding: 2rem 5vw;
+      background: linear-gradient(120deg, #0f2f54, #075985);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .kpis {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .kpi {
+      background: #102a43;
+      padding: 1rem 1.5rem;
+      border-radius: 0.6rem;
+      min-width: 130px;
+    }
+
+    .kpi b {
+      font-size: 2rem;
+      display: block;
+      color: #38bdf8;
+    }
+
+    section {
+      margin-top: 2rem;
+      background: #0d2238;
+      padding: 1.2rem;
+      border-radius: 0.7rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 0.55rem;
+      border-bottom: 1px solid #284866;
+    }
+
+    code {
+      color: #7dd3fc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Satellite ground-station operations</h1>
+    <p>Configuration snapshot sha256:a461a40d36f0e1bc51c0738b8e0a2cc62e568986661bac5f9c7a8bb392655961</p>
+  </header>
+  <main>
+    <div class="kpis">
+      <div class="kpi"><b>5</b>systems</div>
+      <div class="kpi"><b>9</b>interfaces</div>
+      <div class="kpi"><b>4</b>pass activities</div>
+      <div class="kpi"><b>2</b>critical requirements</div>
+    </div>
+
+    <section>
+      <h2>Operational sequence catalogue</h2>
+      <table><tr><td>AcquireSpacecraft</td><td><code>GroundStation::AcquireSpacecraft</code></td></tr>
 <tr><td>ExecutePass</td><td><code>GroundStation::ExecutePass</code></td></tr>
 <tr><td>PlanContact</td><td><code>GroundStation::PlanContact</code></td></tr>
-<tr><td>PublishProducts</td><td><code>GroundStation::PublishProducts</code></td></tr></table></section>
-<section><h2>Ground segment assets</h2><table><tr><td>AntennaSubsystem</td><td><code>GroundStation::AntennaSubsystem</code></td></tr>
+<tr><td>PublishProducts</td><td><code>GroundStation::PublishProducts</code></td></tr></table>
+    </section>
+
+    <section>
+      <h2>Ground segment assets</h2>
+      <table><tr><td>AntennaSubsystem</td><td><code>GroundStation::AntennaSubsystem</code></td></tr>
 <tr><td>BasebandProcessor</td><td><code>GroundStation::BasebandProcessor</code></td></tr>
 <tr><td>FlightDynamicsSystem</td><td><code>GroundStation::FlightDynamicsSystem</code></td></tr>
 <tr><td>GroundStationSystem</td><td><code>GroundStation::GroundStationSystem</code></td></tr>
-<tr><td>MissionControlSystem</td><td><code>GroundStation::MissionControlSystem</code></td></tr></table></section>
-<section><h2>External and internal interfaces</h2><table><tr><td>spaceLink</td><td><code>GroundStation::AntennaSubsystem::spaceLink</code></td></tr>
+<tr><td>MissionControlSystem</td><td><code>GroundStation::MissionControlSystem</code></td></tr></table>
+    </section>
+
+    <section>
+      <h2>External and internal interfaces</h2>
+      <table><tr><td>spaceLink</td><td><code>GroundStation::AntennaSubsystem::spaceLink</code></td></tr>
 <tr><td>tracking</td><td><code>GroundStation::AntennaSubsystem::tracking</code></td></tr>
 <tr><td>missionOutput</td><td><code>GroundStation::BasebandProcessor::missionOutput</code></td></tr>
 <tr><td>rfLink</td><td><code>GroundStation::BasebandProcessor::rfLink</code></td></tr>
@@ -19,5 +104,8 @@
 <tr><td>products</td><td><code>GroundStation::FlightDynamicsSystem::products</code></td></tr>
 <tr><td>trackingInput</td><td><code>GroundStation::FlightDynamicsSystem::trackingInput</code></td></tr>
 <tr><td>commandAndTelemetry</td><td><code>GroundStation::MissionControlSystem::commandAndTelemetry</code></td></tr>
-<tr><td>missionInput</td><td><code>GroundStation::MissionControlSystem::missionInput</code></td></tr></table></section>
-</main></html>
+<tr><td>missionInput</td><td><code>GroundStation::MissionControlSystem::missionInput</code></td></tr></table>
+    </section>
+  </main>
+</body>
+</html>

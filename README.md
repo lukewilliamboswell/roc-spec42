@@ -57,10 +57,11 @@ scripts/test.sh
 ```
 
 `scripts/test.sh` builds the release archive, serves it from an ephemeral loopback HTTP server,
-rewrites every example header to that URL in a temporary directory, and runs all nine scripts
-against the model beside each script through Spec42. Every generated artifact must match its
-committed golden file under the model's `output/` directory byte-for-byte. The test also generates
-the public API documentation and rejects leaked internal model conversion helpers.
+rewrites every example header to that URL in a temporary directory, runs each example's top-level
+`expect` tests, and executes all nine scripts against the model beside each script through Spec42.
+Every generated artifact must match its committed golden file under the model's `output/` directory
+byte-for-byte. The test also generates the public API documentation and rejects leaked internal
+model conversion helpers.
 
 Use `scripts/update-example-snapshots.sh` to regenerate golden outputs after an intentional change.
 CI runs that command and fails if it leaves an uncommitted diff.

@@ -60,6 +60,11 @@ while IFS= read -r source; do
 
 	rewritten_dir="$work_dir/examples/$example_name"
 	mkdir -p "$rewritten_dir"
+	for imported_file in "$example_dir"/*.html; do
+		if [[ -f "$imported_file" ]]; then
+			cp "$imported_file" "$rewritten_dir/"
+		fi
+	done
 	rewritten="$rewritten_dir/$(basename "$source")"
 	sed "s#spec42: platform \"[^\"]*\"#spec42: platform \"$bundle_url\"#" "$source" >"$rewritten"
 	if ! rg -q -F "spec42: platform \"$bundle_url\"" "$rewritten"; then
@@ -71,6 +76,7 @@ while IFS= read -r source; do
 	generated="$work_dir/generated/$example_name/$script_name"
 	additional_expected=""
 	additional_evidence=""
+	ROC_CACHE_DIR="$cache_dir" roc test "$rewritten"
 	ROC_CACHE_DIR="$cache_dir" roc build "$rewritten" --output="$plugin"
 
 	cargo run \

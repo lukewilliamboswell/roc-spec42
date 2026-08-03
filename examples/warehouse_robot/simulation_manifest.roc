@@ -3,15 +3,18 @@ app [main!] { spec42: platform "../../platform/main.roc" }
 import spec42.Diagnostics
 import spec42.Model
 
+display_name : Model.ElementSummary -> Str
 display_name = |element|
 	match element.name {
 		Named(name) => name
 		Unnamed => element.qualified_name
 	}
 
+json_names : List(Model.ElementSummary) -> Str
 json_names = |elements|
 	Str.join_with(elements.map(|element| "    \"${display_name(element)}\""), ",\n")
 
+main! : List(Str) => Try(List({ file_path : Str, contents : List(U8) }), Str)
 main! = |args| {
 	info = Model.info!()
 	states = Model.find!(ByMetaclass(Metaclass("StateUsage")))?
@@ -44,4 +47,26 @@ main! = |args| {
 		{ file_path: "warehouse-robot-simulation.json", contents: manifest.to_utf8() },
 		{ file_path: "simulation/warehouse-robot.properties", contents: controller_properties.to_utf8() },
 	])
+}
+
+## Simulation name lists preserve model order and JSON indentation.
+expect {
+	booting = {
+		handle: ElementHandle("booting"),
+		semantic_id: SemanticId("WR-BOOTING"),
+		metaclass: Metaclass("StateUsage"),
+		name: Named("booting"),
+		qualified_name: "WarehouseRobot::Mission::booting",
+		origin: WorkspaceElement,
+	}
+	idle = {
+		handle: ElementHandle("idle"),
+		semantic_id: SemanticId("WR-IDLE"),
+		metaclass: Metaclass("StateUsage"),
+		name: Named("idle"),
+		qualified_name: "WarehouseRobot::Mission::idle",
+		origin: WorkspaceElement,
+	}
+
+	json_names([booting, idle]) == "    \"booting\",\n    \"idle\""
 }
