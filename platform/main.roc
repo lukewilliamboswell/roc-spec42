@@ -1,0 +1,36 @@
+platform ""
+	requires {
+		main! : List(Str) => Try({}, Str)
+	}
+	exposes [Model, Artifacts, Diagnostics]
+	packages {}
+	provides { "roc_generate": generate_for_host! }
+	hosted {
+		"roc_artifacts_emit": Artifacts.emit!,
+		"roc_diagnostics_log": HostDiagnostics.log!,
+		"roc_diagnostics_report": HostDiagnostics.report!,
+		"roc_model_children": HostModel.children!,
+		"roc_model_effective_features": HostModel.effective_features!,
+		"roc_model_element": HostModel.element!,
+		"roc_model_find": HostModel.find!,
+		"roc_model_info": HostModel.info!,
+		"roc_model_relationships": HostModel.relationships!,
+		"roc_model_roots": HostModel.roots!,
+		"roc_model_typed_by": HostModel.typed_by!,
+	}
+	targets: {
+		inputs_dir: "targets/",
+		wasm32: {
+			inputs: ["host.wasm", app],
+			output: Shared,
+		},
+	}
+
+import Model
+import HostModel
+import Artifacts
+import Diagnostics
+import HostDiagnostics
+
+generate_for_host! : List(Str) => Try({}, Str)
+generate_for_host! = |args| main!(args)

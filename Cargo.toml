@@ -1,0 +1,19 @@
+[package]
+name = "roc-spec42-host"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "MIT"
+description = "Rust ABI adapter for the roc-spec42 WebAssembly platform"
+
+[lib]
+name = "host"
+crate-type = ["staticlib"]
+
+[dependencies]
+spec42-generator-sdk = { path = "../spec42/crates/generator_sdk" }
+
+[profile.release]
+lto = true
+strip = "debuginfo"
+panic = "abort"
