@@ -28,7 +28,9 @@ if [[ "$wasm_members" -eq 0 ]]; then
 fi
 
 zig ar rcs "$work_dir/host-wasm-only.a" "@$rsp"
-zig wasm-ld -r --whole-archive "$work_dir/host-wasm-only.a" -o "$output"
+mkdir -p "$(dirname "$output")"
 ZIG_LOCAL_CACHE_DIR="$work_dir/zig-local-cache" \
 	ZIG_GLOBAL_CACHE_DIR="$work_dir/zig-global-cache" \
+	zig wasm-ld -r --whole-archive "$work_dir/host-wasm-only.a" -o "$output"
+
 echo "Built $output from $wasm_members WebAssembly object members"
