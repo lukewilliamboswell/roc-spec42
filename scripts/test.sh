@@ -67,7 +67,7 @@ while IFS= read -r source; do
 	done
 	rewritten="$rewritten_dir/$(basename "$source")"
 	sed "s#spec42: platform \"[^\"]*\"#spec42: platform \"$bundle_url\"#" "$source" >"$rewritten"
-	if ! rg -q -F "spec42: platform \"$bundle_url\"" "$rewritten"; then
+	if ! grep -qF -e "spec42: platform \"$bundle_url\"" "$rewritten"; then
 		echo "error: failed to rewrite platform header in $source" >&2
 		exit 1
 	fi
@@ -127,7 +127,7 @@ while IFS= read -r source; do
 			echo "error: $example_name/$script_name did not produce non-empty $asserted_path" >&2
 			exit 1
 		fi
-		if ! rg -q -F "$asserted_evidence" "$artifact"; then
+		if ! grep -qF -e "$asserted_evidence" "$artifact"; then
 			echo "error: $asserted_path does not contain expected model evidence: $asserted_evidence" >&2
 			exit 1
 		fi
@@ -149,7 +149,7 @@ while IFS= read -r source; do
 			echo "Verified $example_name/$script_name -> $asserted_path (golden match)"
 		fi
 	done
-done < <(rg --files "$root_dir/examples" --glob '*.roc' | sort)
+done < <(find "$root_dir/examples" -type f -name '*.roc' -print | sort)
 
 if [[ "$example_count" -eq 0 ]]; then
 	echo "error: no Roc examples found" >&2
@@ -163,7 +163,7 @@ fi
 
 roc docs "$root_dir/platform/main.roc" --output="$work_dir/docs" --no-cache
 test -s "$work_dir/docs/Model/index.html"
-if tr -d '\000' <"$work_dir/docs/Model/index.html" | rg -q 'Model\.to_summary|Model\.to_detail'; then
+if tr -d '\000' <"$work_dir/docs/Model/index.html" | grep -qE 'Model\.to_summary|Model\.to_detail'; then
 	echo "error: internal model conversion helpers leaked into public docs" >&2
 	exit 1
 fi
