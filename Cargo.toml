@@ -14,7 +14,7 @@ crate-type = ["staticlib"]
 # Pinned by revision rather than a sibling checkout: the ABI is verified at load time by a
 # schema fingerprint, so host and guest must be built from the same protocol revision. A git
 # dependency makes that pin explicit and reproducible for anyone cloning this repo alone.
-spec42-generator-sdk = { git = "https://github.com/lukewilliamboswell/spec42", rev = "8fda62b3148239e88d76be37f5102f54875053f0" }
+spec42-generator-sdk = { git = "https://github.com/lukewilliamboswell/spec42", rev = "249ac63c7d40b444f8bc7c1df6fc6ffaa49ae056" }
 
 [profile.release]
 lto = true
