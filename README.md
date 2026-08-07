@@ -41,9 +41,14 @@ domain states rather than `None`/`Some` values.
 
 ## Platform development
 
-The Rust guest adapter uses the SDK from the sibling Spec42 checkout at `../spec42`. The expected
-Spec42 commit is pinned in [`.spec42-revision`](.spec42-revision), and CI verifies the sibling branch
-against that revision so both sides of the ABI remain in lockstep.
+The Rust guest adapter depends on `spec42-generator-sdk` as a git dependency pinned by revision in
+[`Cargo.toml`](Cargo.toml), mirrored in [`.spec42-revision`](.spec42-revision) for CI. A sibling
+checkout at `../spec42` is no longer required to build.
+
+The pin matters: Spec42 verifies the wire schema at load time. Every guest exports
+`spec42_abi_version` returning a structural fingerprint of the ABI types, and a host whose
+fingerprint differs refuses the module with exit 11 rather than misreading its Postcard payloads.
+Bumping the revision therefore means rebuilding the host adapter and re-running the examples.
 
 Requirements: Bash, Python 3, `curl`, Rust stable with `wasm32-unknown-unknown`, Zig 0.16, and Roc on
 `PATH`. The expected Roc nightly is pinned in [`.roc-version`](.roc-version); CI reads the same tag.

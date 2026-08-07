@@ -92,7 +92,7 @@ fn option_bool(value: Option<bool>) -> NoneOrSomeType17 {
 fn summary(value: model::ElementSummary) -> HostModelChildrenOk {
     HostModelChildrenOk {
         handle: roc_str(&value.handle),
-        metaclass: roc_str(&value.metaclass),
+        metaclass: roc_str(value.metaclass.as_str()),
         name: option_string_11(value.name),
         qualified_name: roc_str(&value.qualified_name),
         semantic_id: roc_str(&value.semantic_id),
@@ -189,7 +189,7 @@ fn detail(value: model::ElementDetail) -> HostModelElementOk {
 
 fn relationship(value: model::Relationship) -> HostModelRelationshipsOk {
     HostModelRelationshipsOk {
-        kind: roc_str(&value.kind),
+        kind: roc_str(value.kind.as_str()),
         source: summary(value.source),
         target: summary(value.target),
         implied: value.implied,
@@ -275,7 +275,12 @@ pub extern "C" fn roc_diagnostics_report(
 
 #[no_mangle]
 pub extern "C" fn roc_model_info() -> HostModelInfo {
-    let value = model::info();
+    // The Roc-facing signature is still infallible, so an error here has nowhere to go.
+    // The host cannot actually fail this query; if that ever changes, `info!` should become
+    // a `Try` like every other Model function rather than being papered over here.
+    let value = model::info().unwrap_or_else(|error| {
+        panic!("Spec42 rejected the model info query: {error}");
+    });
     HostModelInfo {
         model_digest: roc_str(&value.model_digest),
         semantic_api_version: roc_str(&value.semantic_api_version),
