@@ -188,8 +188,8 @@ dependencies = [
 
 [[package]]
 name = "spec42-generator-protocol"
-version = "0.49.0"
-source = "git+https://github.com/lukewilliamboswell/spec42?rev=249ac63c7d40b444f8bc7c1df6fc6ffaa49ae056#249ac63c7d40b444f8bc7c1df6fc6ffaa49ae056"
+version = "0.50.0"
+source = "git+https://github.com/lukewilliamboswell/spec42?rev=5aaf32950bf0fa6e136ec448432be6a359fd5512#5aaf32950bf0fa6e136ec448432be6a359fd5512"
 dependencies = [
  "postcard-schema",
  "serde",
@@ -197,8 +197,8 @@ dependencies = [
 
 [[package]]
 name = "spec42-generator-sdk"
-version = "0.49.0"
-source = "git+https://github.com/lukewilliamboswell/spec42?rev=249ac63c7d40b444f8bc7c1df6fc6ffaa49ae056#249ac63c7d40b444f8bc7c1df6fc6ffaa49ae056"
+version = "0.50.0"
+source = "git+https://github.com/lukewilliamboswell/spec42?rev=5aaf32950bf0fa6e136ec448432be6a359fd5512#5aaf32950bf0fa6e136ec448432be6a359fd5512"
 dependencies = [
  "postcard",
  "serde",
