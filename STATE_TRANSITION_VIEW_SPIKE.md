@@ -177,7 +177,8 @@ than encoded as empty strings or omitted values.
 
 ## Plugin behavior
 
-`main!` accepts an optional view name or semantic ID after the Spec42 `--` separator. With no selector:
+`main!` accepts an optional opaque view handle, view name, semantic ID, or source URI after the
+Spec42 `--` separator. With no selector:
 
 - exactly one available view selects it;
 - zero views returns a clear error; and
@@ -187,6 +188,11 @@ The plugin calls `StateTransition.view!` once after selection, converts the type
 notation scene, lays it out, and returns one SVG artifact. The file name is a sanitized presentation
 name plus `.svg`; collision handling is deterministic. No filesystem, network, clock, randomness, or
 subprocess capability is required.
+
+The VS Code client first requests the typed catalog from `spec42/stateTransitionViews` for the current
+immutable publication. It filters by active-file provenance, opens a sole match directly, or presents
+a Quick Pick for multiple matches. Generation receives the chosen opaque handle and the catalog's
+model digest; Spec42 rejects execution if the publication changed during selection.
 
 ## Notation scene
 

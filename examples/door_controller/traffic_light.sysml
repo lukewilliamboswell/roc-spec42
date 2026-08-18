@@ -1,5 +1,8 @@
 package TrafficLightExample {
     private import StandardViewDefinitions::*;
+    private import ScalarValues::String;
+
+    attribute intersectionId : String = "intersection-42";
 
     item def TimerExpired;
 

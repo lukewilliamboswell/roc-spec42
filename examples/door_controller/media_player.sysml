@@ -1,5 +1,8 @@
 package MediaPlayerExample {
     private import StandardViewDefinitions::*;
+    private import ScalarValues::Boolean;
+
+    attribute supportsGaplessPlayback : Boolean = true;
 
     item def LoadRequested;
     item def PlayRequested;

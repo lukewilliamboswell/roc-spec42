@@ -78,12 +78,21 @@ The workspace contains four independent models for visual comparison:
 
 | File | View | Shape exercised |
 |---|---|---|
-| `model.sysml` | `lifecycle` | minimal linear door lifecycle |
+| `model.sysml` | `lifecycle`, `maintenanceLifecycle` | multiple views in one file; linear and cyclic/branched lifecycles |
 | `traffic_light.sysml` | `trafficOperations` | cycle plus a retirement branch |
 | `order_fulfillment.sysml` | `orderLifecycle` | longer linear process with triggers |
 | `media_player.sysml` | `playbackLifecycle` | cycles and multiple return paths |
 
 Open or focus one of these files, then run `Spec42: Open State Transition
-View`. The extension passes the active document URI to the plugin; the plugin
-selects the authored view whose source provenance matches that URI. All files
-remain part of the same workspace and immutable LSP publication.
+View`. A file with one authored view opens directly. If the active file authors
+multiple views, the extension presents a Quick Pick containing each view name
+and exposed state-machine label, then passes the selected opaque handle to the
+plugin. All files remain part of the same workspace and immutable LSP
+publication.
+
+Each model also imports and uses a type from the bundled SysML standard
+library: `ScalarValues::String`, `Integer`, or `Boolean`. These attributes are
+not inputs to the diagram renderer; they demonstrate that the same publication
+resolves ordinary standard-library typing alongside `StateTransitionView`.
+Hover `String`, `Integer`, or `Boolean` in VS Code to inspect the resolved
+standard-library definition.

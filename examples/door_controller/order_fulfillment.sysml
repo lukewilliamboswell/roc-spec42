@@ -1,5 +1,8 @@
 package OrderFulfillmentExample {
     private import StandardViewDefinitions::*;
+    private import ScalarValues::Integer;
+
+    attribute packingStations : Integer = 4;
 
     item def PaymentConfirmed;
     item def PackingCompleted;

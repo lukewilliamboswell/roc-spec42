@@ -149,7 +149,10 @@ render = |view| {
 select_view! = |selector| {
 	views = StateTransition.views!()?
 	selected = match selector {
-		Some(wanted) => views.keep_if(|view| if view.name == wanted True else if semantic_text(view.semantic_id) == wanted True else view.source.uri == wanted)
+		Some(wanted) => views.keep_if(|view| {
+			ViewHandle(handle) = view.handle
+			if handle == wanted True else if view.name == wanted True else if semantic_text(view.semantic_id) == wanted True else view.source.uri == wanted
+		})
 		None => views
 	}
 	match selected {
