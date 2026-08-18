@@ -136,6 +136,7 @@ echo "Expected view: lifecycle (DoorLifecycle)"
 if [[ "$open_vscode" -eq 1 ]]; then
 	echo "Opening the isolated VS Code QA instance..."
 	"$code_bin" \
+		--new-window \
 		--extensions-dir "$extensions_dir" \
 		--user-data-dir "$user_data_dir" \
 		"$workspace_path" \
