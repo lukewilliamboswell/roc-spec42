@@ -11,6 +11,7 @@ self-contained SysML workspace with three Roc generators that can be built and r
 | Warehouse robot | Review behavioural topology | `state_graph.roc` | Graphviz state graph (DOT) |
 | Warehouse robot | Walk operational and recovery paths without a simulator | `state_explorer.roc` | Interactive standalone HTML explorer |
 | Warehouse robot | Configure a simulation or control adapter | `simulation_manifest.roc` | JSON manifest and nested controller properties |
+| Door controller | Render an authored state-transition view | `state_transition_svg.roc` | Standalone normative-notation SVG |
 | Ground station | Baseline system endpoints for an ICD | `icd_csv.roc` | Interface-control register (CSV) |
 | Ground station | Review integration connectivity | `network_graph.roc` | Graphviz interface network (DOT) |
 | Ground station | Brief operators and engineering stakeholders | `operations_dashboard.roc` | Standalone HTML dashboard |

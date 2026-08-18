@@ -196,6 +196,221 @@ fn relationship(value: model::Relationship) -> HostModelRelationshipsOk {
     }
 }
 
+fn source_reference(value: model::SourceReference) -> HostStateTransitionViewOkMachineSource {
+    HostStateTransitionViewOkMachineSource {
+        uri: roc_str(&value.uri),
+        range: HostStateTransitionViewOkMachineSourceRange {
+            end_character: value.range.end_character,
+            end_line: value.range.end_line,
+            start_character: value.range.start_character,
+            start_line: value.range.start_line,
+        },
+    }
+}
+
+fn state_identity(value: model::StateMachineIdentity) -> HostStateTransitionViewsOkExposedMachine {
+    HostStateTransitionViewsOkExposedMachine {
+        label: roc_str(&value.label),
+        semantic_id: roc_str(&value.semantic_id),
+    }
+}
+
+fn element_identity(value: model::ElementIdentity) -> HostStateTransitionViewsOkExposedMachine {
+    HostStateTransitionViewsOkExposedMachine {
+        label: roc_str(&value.label),
+        semantic_id: roc_str(&value.semantic_id),
+    }
+}
+
+fn unsupported_reason(
+    value: model::UnsupportedReason,
+) -> HostStateTransitionViewOkCompletenessReasons {
+    HostStateTransitionViewOkCompletenessReasons {
+        code: roc_str(&value.code),
+        message: roc_str(&value.message),
+    }
+}
+
+fn state_transition_summary(
+    value: model::StateTransitionViewSummary,
+) -> HostStateTransitionViewsOk {
+    HostStateTransitionViewsOk {
+        exposed_machine: state_identity(value.exposed_machine),
+        handle: roc_str(&value.handle),
+        name: roc_str(&value.name),
+        semantic_id: roc_str(&value.semantic_id),
+        source: source_reference(value.source),
+    }
+}
+
+fn machine_summary(value: model::StateMachineSummary) -> HostStateTransitionViewOkMachine {
+    HostStateTransitionViewOkMachine {
+        label: roc_str(&value.label),
+        semantic_id: roc_str(&value.semantic_id),
+        source: source_reference(value.source),
+    }
+}
+
+fn state_node(value: model::StateTransitionNode) -> HostStateTransitionViewOkNodes {
+    let kind = match value.kind {
+        model::StateTransitionNodeKind::Initial => 0,
+        model::StateTransitionNodeKind::State => 1,
+        model::StateTransitionNodeKind::Final => 2,
+    };
+    HostStateTransitionViewOkNodes {
+        label: roc_str(&value.label),
+        semantic_id: roc_str(&value.semantic_id),
+        source: source_reference(value.source),
+        kind,
+    }
+}
+
+fn completeness(value: model::ProjectionCompleteness) -> HostStateTransitionViewOkCompleteness {
+    let (complete, reasons) = match value {
+        model::ProjectionCompleteness::Complete => (true, Vec::new()),
+        model::ProjectionCompleteness::Incomplete { reasons } => (false, reasons),
+    };
+    HostStateTransitionViewOkCompleteness {
+        reasons: unsafe { roc_list(reasons.into_iter().map(unsupported_reason).collect()) },
+        complete,
+    }
+}
+
+fn optional_source(value: Option<model::SourceReference>) -> NoneOrSomeType64 {
+    match value {
+        None => NoneOrSomeType64 {
+            _payload_alignment: [],
+            payload: [0; 28],
+            tag: NoneOrSomeType64Tag::None,
+        },
+        Some(value) => NoneOrSomeType64 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(source_reference(value)) },
+            tag: NoneOrSomeType64Tag::Some,
+        },
+    }
+}
+
+fn optional_reason(value: Option<model::UnsupportedReason>) -> NoneOrSomeType65 {
+    match value {
+        None => NoneOrSomeType65 {
+            _payload_alignment: [],
+            payload: [0; 24],
+            tag: NoneOrSomeType65Tag::None,
+        },
+        Some(value) => NoneOrSomeType65 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(unsupported_reason(value)) },
+            tag: NoneOrSomeType65Tag::Some,
+        },
+    }
+}
+
+fn projection_feature(
+    value: model::ProjectionFeature,
+) -> HostStateTransitionViewOkTransitionsEffect {
+    use model::ProjectionFeature::*;
+    let (kind, label, source, unsupported) = match value {
+        Absent => (0, None, None, None),
+        Supported { label, source } => (1, Some(label), Some(source), None),
+        Unsupported { reason } => (2, None, None, Some(reason)),
+        Unresolved => (3, None, None, None),
+        Ambiguous => (4, None, None, None),
+        Recovery => (5, None, None, None),
+    };
+    HostStateTransitionViewOkTransitionsEffect {
+        label: transition_label(label),
+        source: optional_source(source),
+        unsupported: optional_reason(unsupported),
+        kind,
+    }
+}
+
+fn transition_label(value: Option<String>) -> NoneOrSomeType63 {
+    match value {
+        None => NoneOrSomeType63 {
+            _payload_alignment: [],
+            payload: [0; 12],
+            tag: NoneOrSomeType63Tag::None,
+        },
+        Some(value) => NoneOrSomeType63 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(roc_str(&value)) },
+            tag: NoneOrSomeType63Tag::Some,
+        },
+    }
+}
+
+fn optional_identity(value: Option<model::ElementIdentity>) -> NoneOrSomeType67 {
+    match value {
+        None => NoneOrSomeType67 {
+            _payload_alignment: [],
+            payload: [0; 24],
+            tag: NoneOrSomeType67Tag::None,
+        },
+        Some(value) => NoneOrSomeType67 {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(element_identity(value)) },
+            tag: NoneOrSomeType67Tag::Some,
+        },
+    }
+}
+
+fn transition_trigger(
+    value: model::TransitionTrigger,
+) -> HostStateTransitionViewOkTransitionsTrigger {
+    let (kind, label, target, source, unsupported) = match value {
+        model::TransitionTrigger::None => (0, None, None, None, None),
+        model::TransitionTrigger::Accept {
+            label,
+            target,
+            source,
+        } => (1, Some(label), target, Some(source), None),
+        model::TransitionTrigger::Unsupported { reason } => (2, None, None, None, Some(reason)),
+    };
+    HostStateTransitionViewOkTransitionsTrigger {
+        label: transition_label(label),
+        source: optional_source(source),
+        target: optional_identity(target),
+        unsupported: optional_reason(unsupported),
+        kind,
+    }
+}
+
+fn state_transition(value: model::StateTransitionEdge) -> HostStateTransitionViewOkTransitions {
+    HostStateTransitionViewOkTransitions {
+        effect: projection_feature(value.effect),
+        guard: projection_feature(value.guard),
+        label: transition_label(value.label),
+        semantic_id: roc_str(&value.semantic_id),
+        source: roc_str(&value.source),
+        source_reference: source_reference(value.source_reference),
+        target: roc_str(&value.target),
+        trigger: transition_trigger(value.trigger),
+        implied: matches!(value.provenance, model::RelationshipProvenance::Implied),
+    }
+}
+
+fn state_transition_view(value: model::StateTransitionViewProjection) -> HostStateTransitionViewOk {
+    HostStateTransitionViewOk {
+        completeness: completeness(value.completeness),
+        machine: machine_summary(value.machine),
+        model_digest: roc_str(&value.model_digest),
+        nodes: unsafe { roc_list(value.nodes.into_iter().map(state_node).collect()) },
+        transitions: unsafe {
+            roc_list(
+                value
+                    .transitions
+                    .into_iter()
+                    .map(state_transition)
+                    .collect(),
+            )
+        },
+        view: state_transition_summary(value.view),
+        schema_version: value.schema_version,
+    }
+}
+
 fn error_string<const N: usize>(message: String) -> [u8; N] {
     unsafe { payload_bytes(roc_str(&message)) }
 }
@@ -224,7 +439,11 @@ fn take_string(value: RocStr) -> String {
 fn take_optional_string_3(value: NoneOrSomeType3) -> Option<String> {
     let result = match value.tag {
         NoneOrSomeType3Tag::None => None,
-        NoneOrSomeType3Tag::Some => Some(value.payload_some().as_str().to_owned()),
+        NoneOrSomeType3Tag::Some => Some(
+            unsafe { value.borrow_payload_some_unchecked() }
+                .as_str()
+                .to_owned(),
+        ),
     };
     unsafe { value.decref(roc_host()) };
     result
@@ -233,7 +452,11 @@ fn take_optional_string_3(value: NoneOrSomeType3) -> Option<String> {
 fn take_optional_string_12(value: NoneOrSomeType12) -> Option<String> {
     let result = match value.tag {
         NoneOrSomeType12Tag::None => None,
-        NoneOrSomeType12Tag::Some => Some(value.payload_some().as_str().to_owned()),
+        NoneOrSomeType12Tag::Some => Some(
+            unsafe { value.borrow_payload_some_unchecked() }
+                .as_str()
+                .to_owned(),
+        ),
     };
     unsafe { value.decref(roc_host()) };
     result
@@ -366,6 +589,43 @@ pub extern "C" fn roc_model_relationships(element: RocStr) -> HostModelRelations
 }
 
 #[no_mangle]
+pub extern "C" fn roc_state_transition_views() -> HostStateTransitionViewsResult {
+    match model::state_transition_views() {
+        Ok(values) => HostStateTransitionViewsResult {
+            _payload_alignment: [],
+            payload: unsafe {
+                payload_bytes(roc_list(
+                    values.into_iter().map(state_transition_summary).collect(),
+                ))
+            },
+            tag: HostStateTransitionViewsResultTag::Ok,
+        },
+        Err(message) => HostStateTransitionViewsResult {
+            _payload_alignment: [],
+            payload: error_string(message),
+            tag: HostStateTransitionViewsResultTag::Err,
+        },
+    }
+}
+
+#[no_mangle]
+pub extern "C" fn roc_state_transition_view(handle: RocStr) -> HostStateTransitionViewResult {
+    let handle = take_string(handle);
+    match model::state_transition_view(&handle) {
+        Ok(value) => HostStateTransitionViewResult {
+            _payload_alignment: [],
+            payload: unsafe { payload_bytes(state_transition_view(value)) },
+            tag: HostStateTransitionViewResultTag::Ok,
+        },
+        Err(message) => HostStateTransitionViewResult {
+            _payload_alignment: [],
+            payload: error_string(message),
+            tag: HostStateTransitionViewResultTag::Err,
+        },
+    }
+}
+
+#[no_mangle]
 pub extern "C" fn roc_alloc(length: usize, alignment: usize) -> *mut c_void {
     DefaultAllocators::roc_alloc(roc_host_ptr(), length, alignment)
 }
@@ -410,8 +670,7 @@ impl Guest for RocGenerator {
             unsafe { roc_list(args.iter().map(|arg| roc_str(arg)).collect::<Vec<RocStr>>()) };
         let result = unsafe { roc_generate(roc_args) };
         let output = match result.tag {
-            GenerateForHostResultTag::Ok => Ok(result
-                .payload_ok()
+            GenerateForHostResultTag::Ok => Ok(unsafe { result.borrow_payload_ok_unchecked() }
                 .as_slice()
                 .iter()
                 .map(|artifact| Artifact {
@@ -419,7 +678,9 @@ impl Guest for RocGenerator {
                     contents: artifact.contents.as_slice().to_vec(),
                 })
                 .collect()),
-            GenerateForHostResultTag::Err => Err(result.payload_err().as_str().to_owned()),
+            GenerateForHostResultTag::Err => Err(unsafe { result.borrow_payload_err_unchecked() }
+                .as_str()
+                .to_owned()),
         };
         unsafe {
             result.decref(&host);

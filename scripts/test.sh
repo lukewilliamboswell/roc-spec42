@@ -9,11 +9,13 @@ cache_dir=$(mktemp -d "/tmp/roc-spec42-cache.XXXXXX")
 server_pid=""
 
 cleanup() {
+	status=$?
 	if [[ -n "$server_pid" ]]; then
 		kill "$server_pid" 2>/dev/null || true
 		wait "$server_pid" 2>/dev/null || true
 	fi
 	rm -rf "$work_dir" "$cache_dir"
+	return "$status"
 }
 trap cleanup EXIT
 
@@ -66,7 +68,9 @@ while IFS= read -r source; do
 		fi
 	done
 	rewritten="$rewritten_dir/$(basename "$source")"
-	sed "s#spec42: platform \"[^\"]*\"#spec42: platform \"$bundle_url\"#" "$source" >"$rewritten"
+	sed \
+		-e "s#spec42: platform \"[^\"]*\"#spec42: platform \"$bundle_url\"#" \
+		"$source" >"$rewritten"
 	if ! grep -qF -e "spec42: platform \"$bundle_url\"" "$rewritten"; then
 		echo "error: failed to rewrite platform header in $source" >&2
 		exit 1
@@ -79,17 +83,30 @@ while IFS= read -r source; do
 	ROC_CACHE_DIR="$cache_dir" roc test "$rewritten"
 	ROC_CACHE_DIR="$cache_dir" roc build "$rewritten" --output="$plugin"
 
+	server_features=(--no-default-features)
+	spec42_environment=(--no-stdlib)
+	if [[ "$example_name/$script_name" == "door_controller/state_transition_svg" ]]; then
+		# Normative view typing must resolve against the pinned SysML standard library.
+		server_features+=(--features embed-stdlib)
+		# Keep this nonempty for macOS Bash under `set -u`; domain libraries are unrelated.
+		spec42_environment=(--disable-kpar-library domain)
+	fi
+	generator_args=("scenario=$example_name" "script=$script_name")
+	if [[ "$example_name/$script_name" == "door_controller/state_transition_svg" ]]; then
+		generator_args=(lifecycle "${generator_args[@]}")
+	fi
 	cargo run \
 		--manifest-path "$spec42_dir/Cargo.toml" \
 		-p server \
 		--bin spec42 \
-		--no-default-features \
+		"${server_features[@]}" \
 		-- \
-		--no-stdlib \
+		"${spec42_environment[@]}" \
 		generate "$plugin" "$model" \
 		--output "$generated" \
-		-- scenario="$example_name" script="$script_name"
+		-- "${generator_args[@]}"
 	case "$example_name/$script_name" in
+		door_controller/state_transition_svg) expected="door-controller.svg"; evidence='data-kind="initial"' ;;
 		electric_vehicle/bom_csv) expected="electric-vehicle-bom.csv"; evidence="EV-BAT-82" ;;
 		electric_vehicle/engineering_dashboard) expected="engineering-dashboard.html"; evidence="DrivingRangeRequirement" ;;
 		electric_vehicle/vcrm_csv) expected="electric-vehicle-vcrm.csv"; evidence="RangeCertificationTest" ;;
@@ -132,17 +149,28 @@ while IFS= read -r source; do
 			exit 1
 		fi
 		snapshot="$example_dir/output/$asserted_path"
+		snapshot_candidate="$artifact"
+		if [[ "$example_name/$script_name" == "door_controller/state_transition_svg" ]]; then
+			# Semantic IDs and source URIs intentionally contain the checkout's absolute URI.
+			# Keep the checked-in notation golden deterministic while testing live provenance above.
+			snapshot_candidate="$work_dir/normalized-$asserted_path"
+			sed -E \
+				-e 's# data-view-semantic-id="[^"]*"##g' \
+				-e 's# data-semantic-id="[^"]*"##g' \
+				-e 's#data-source-uri="[^"]*"#data-source-uri="file:///workspace/model.sysml"#g' \
+				"$artifact" >"$snapshot_candidate"
+		fi
 		if [[ "$update_snapshots" == "1" ]]; then
 			mkdir -p "$(dirname "$snapshot")"
-			cp "$artifact" "$snapshot"
+			cp "$snapshot_candidate" "$snapshot"
 			echo "Updated $example_name/output/$asserted_path"
 		elif [[ ! -f "$snapshot" ]]; then
 			echo "error: missing golden snapshot $snapshot" >&2
 			echo "run scripts/update-example-snapshots.sh to create it" >&2
 			exit 1
-		elif ! cmp -s "$snapshot" "$artifact"; then
+		elif ! cmp -s "$snapshot" "$snapshot_candidate"; then
 			echo "error: generated output differs from $snapshot" >&2
-			diff -u "$snapshot" "$artifact" || true
+			diff -u "$snapshot" "$snapshot_candidate" || true
 			echo "run scripts/update-example-snapshots.sh to accept an intentional change" >&2
 			exit 1
 		else
@@ -156,13 +184,14 @@ if [[ "$example_count" -eq 0 ]]; then
 	exit 1
 fi
 
-if [[ "$example_count" -ne 9 ]]; then
-	echo "error: expected 9 model/script combinations, found $example_count" >&2
+if [[ "$example_count" -ne 10 ]]; then
+	echo "error: expected 10 model/script combinations, found $example_count" >&2
 	exit 1
 fi
 
 roc docs "$root_dir/platform/main.roc" --output="$work_dir/docs" --no-cache
 test -s "$work_dir/docs/Model/index.html"
+test -s "$work_dir/docs/StateTransition/index.html"
 if tr -d '\000' <"$work_dir/docs/Model/index.html" | grep -qE 'Model\.to_summary|Model\.to_detail'; then
 	echo "error: internal model conversion helpers leaked into public docs" >&2
 	exit 1
