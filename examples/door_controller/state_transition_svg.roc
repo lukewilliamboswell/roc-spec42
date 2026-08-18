@@ -149,12 +149,12 @@ render = |view| {
 select_view! = |selector| {
 	views = StateTransition.views!()?
 	selected = match selector {
-		Some(wanted) => views.keep_if(|view| if view.name == wanted True else semantic_text(view.semantic_id) == wanted)
+		Some(wanted) => views.keep_if(|view| if view.name == wanted True else if semantic_text(view.semantic_id) == wanted True else view.source.uri == wanted)
 		None => views
 	}
 	match selected {
 		[only] => Ok(only)
-		[] => Err(if views.is_empty() "no authored StateTransitionView is available" else "view selector did not match an authored StateTransitionView")
+		[] => Err(if views.is_empty() "no authored StateTransitionView is available" else "view selector did not match a view name, semantic ID, or source URI")
 		_ => Err("multiple StateTransitionViews are available; pass a view name or semantic ID after --")
 	}
 }

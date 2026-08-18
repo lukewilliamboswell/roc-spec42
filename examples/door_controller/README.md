@@ -73,3 +73,17 @@ VSIX containing the plugin, installs it into an isolated extension directory,
 and opens the exemplar workspace. Run `Spec42: Open State Transition View` in
 that window. Use `--no-open` to prepare the environment without launching VS
 Code.
+
+The workspace contains four independent models for visual comparison:
+
+| File | View | Shape exercised |
+|---|---|---|
+| `model.sysml` | `lifecycle` | minimal linear door lifecycle |
+| `traffic_light.sysml` | `trafficOperations` | cycle plus a retirement branch |
+| `order_fulfillment.sysml` | `orderLifecycle` | longer linear process with triggers |
+| `media_player.sysml` | `playbackLifecycle` | cycles and multiple return paths |
+
+Open or focus one of these files, then run `Spec42: Open State Transition
+View`. The extension passes the active document URI to the plugin; the plugin
+selects the authored view whose source provenance matches that URI. All files
+remain part of the same workspace and immutable LSP publication.
