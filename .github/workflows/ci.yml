@@ -31,8 +31,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check out pinned Spec42 fork
         run: |
-          git clone --depth=1 --branch feature/wasm-model-generation https://github.com/lukewilliamboswell/spec42.git ../spec42
-          test "$(git -C ../spec42 rev-parse HEAD)" = "$(sed -n '1p' .spec42-revision)"
+          revision=$(sed -n '1p' .spec42-revision)
+          git init ../spec42
+          git -C ../spec42 remote add origin https://github.com/lukewilliamboswell/spec42.git
+          git -C ../spec42 fetch --depth=1 origin "$revision"
+          git -C ../spec42 checkout --detach FETCH_HEAD
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
