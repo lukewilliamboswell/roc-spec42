@@ -1,6 +1,6 @@
 {
   "schema": "roc-spec42/warehouse-robot-simulation-v1",
-  "modelDigest": "blake3:4921b6cf09442b48c1024da6b46d1d3d211e6895a83fa66a24845e4464922968",
+  "modelDigest": "blake3:039c009489e7c067815893ed11187d9273b4a2d88045746968528bfd63b8de6e",
   "arguments": ["scenario=warehouse_robot", "script=simulation_manifest"],
   "initialState": "booting",
   "states": [

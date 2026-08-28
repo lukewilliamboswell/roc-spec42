@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 516 138" data-artifact-version="1" data-model-digest="blake3:6cc93a19dbf84cb1188d772246fb54ac230e3f0aeccc7c25aee4cd386088f732" data-view-name="lifecycle">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 516 138" data-artifact-version="1" data-model-digest="blake3:b68dcb0e632fcf4177830c4067eaf4f3534d752a6d0199bf943e9961fb515b7b" data-view-name="lifecycle">
 <title>lifecycle</title><desc>SysML state-transition view of DoorLifecycle</desc>
 <defs><marker id="transition-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#374151" /></marker></defs>
 <style>text { font-family: sans-serif; font-size: 14px; fill: #111827; } .transition-label { font-size: 12px; }</style>
