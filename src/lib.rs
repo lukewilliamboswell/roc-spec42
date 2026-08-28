@@ -232,13 +232,23 @@ fn unsupported_reason(
 }
 
 fn state_transition_summary(
-    value: model::StateTransitionViewSummary,
+    value: model::DiagramViewSummary,
+    machine: &model::StateMachineSummary,
 ) -> HostStateTransitionViewsOk {
+    let semantic_id = match &value.reference {
+        model::DiagramSemanticReference::Qualified { qualified_name, .. } => qualified_name,
+        model::DiagramSemanticReference::ToolingElementId { element_id, .. } => element_id,
+        model::DiagramSemanticReference::SourceAnchor { .. }
+        | model::DiagramSemanticReference::Relationship { .. } => &value.handle,
+    };
     HostStateTransitionViewsOk {
-        exposed_machine: state_identity(value.exposed_machine),
+        exposed_machine: state_identity(model::StateMachineIdentity {
+            semantic_id: machine.semantic_id.clone(),
+            label: machine.label.clone(),
+        }),
         handle: roc_str(&value.handle),
         name: roc_str(&value.name),
-        semantic_id: roc_str(&value.semantic_id),
+        semantic_id: roc_str(semantic_id),
         source: source_reference(value.source),
     }
 }
@@ -367,6 +377,26 @@ fn transition_trigger(
             source,
         } => (1, Some(label), target, Some(source), None),
         model::TransitionTrigger::Unsupported { reason } => (2, None, None, None, Some(reason)),
+        model::TransitionTrigger::Unresolved => (
+            2,
+            None,
+            None,
+            None,
+            Some(model::UnsupportedReason {
+                code: "unresolved-trigger".to_owned(),
+                message: "transition trigger could not be resolved".to_owned(),
+            }),
+        ),
+        model::TransitionTrigger::Ambiguous => (
+            2,
+            None,
+            None,
+            None,
+            Some(model::UnsupportedReason {
+                code: "ambiguous-trigger".to_owned(),
+                message: "transition trigger resolved to multiple targets".to_owned(),
+            }),
+        ),
     };
     HostStateTransitionViewOkTransitionsTrigger {
         label: transition_label(label),
@@ -391,24 +421,33 @@ fn state_transition(value: model::StateTransitionEdge) -> HostStateTransitionVie
     }
 }
 
-fn state_transition_view(value: model::StateTransitionViewProjection) -> HostStateTransitionViewOk {
-    HostStateTransitionViewOk {
+fn state_transition_view(
+    value: model::DiagramViewProjection,
+) -> Result<HostStateTransitionViewOk, String> {
+    let scene = match value.scene {
+        model::DiagramScene::StateTransition(scene) => scene,
+        _ => return Err("selected diagram is not a state-transition view".to_owned()),
+    };
+    let machine = scene
+        .machine
+        .ok_or_else(|| "state-transition view exposes no resolved state machine".to_owned())?;
+    Ok(HostStateTransitionViewOk {
         completeness: completeness(value.completeness),
-        machine: machine_summary(value.machine),
+        machine: machine_summary(machine.clone()),
         model_digest: roc_str(&value.model_digest),
-        nodes: unsafe { roc_list(value.nodes.into_iter().map(state_node).collect()) },
+        nodes: unsafe { roc_list(scene.vertices.into_iter().map(state_node).collect()) },
         transitions: unsafe {
             roc_list(
-                value
+                scene
                     .transitions
                     .into_iter()
                     .map(state_transition)
                     .collect(),
             )
         },
-        view: state_transition_summary(value.view),
+        view: state_transition_summary(value.view, &machine),
         schema_version: value.schema_version,
-    }
+    })
 }
 
 fn error_string<const N: usize>(message: String) -> [u8; N] {
@@ -590,14 +629,27 @@ pub extern "C" fn roc_model_relationships(element: RocStr) -> HostModelRelations
 
 #[no_mangle]
 pub extern "C" fn roc_state_transition_views() -> HostStateTransitionViewsResult {
-    match model::state_transition_views() {
+    let result = model::diagram_views().and_then(|values| {
+        values
+            .into_iter()
+            .filter(|value| value.kind == model::DiagramViewKind::StateTransitionView)
+            .map(|value| {
+                let projection = model::diagram_view(&value.handle)?;
+                let machine = match &projection.scene {
+                    model::DiagramScene::StateTransition(scene) => scene.machine.as_ref(),
+                    _ => None,
+                }
+                .ok_or_else(|| {
+                    "state-transition view exposes no resolved state machine".to_owned()
+                })?;
+                Ok(state_transition_summary(value, machine))
+            })
+            .collect::<Result<Vec<_>, String>>()
+    });
+    match result {
         Ok(values) => HostStateTransitionViewsResult {
             _payload_alignment: [],
-            payload: unsafe {
-                payload_bytes(roc_list(
-                    values.into_iter().map(state_transition_summary).collect(),
-                ))
-            },
+            payload: unsafe { payload_bytes(roc_list(values)) },
             tag: HostStateTransitionViewsResultTag::Ok,
         },
         Err(message) => HostStateTransitionViewsResult {
@@ -611,10 +663,10 @@ pub extern "C" fn roc_state_transition_views() -> HostStateTransitionViewsResult
 #[no_mangle]
 pub extern "C" fn roc_state_transition_view(handle: RocStr) -> HostStateTransitionViewResult {
     let handle = take_string(handle);
-    match model::state_transition_view(&handle) {
+    match model::diagram_view(&handle).and_then(state_transition_view) {
         Ok(value) => HostStateTransitionViewResult {
             _payload_alignment: [],
-            payload: unsafe { payload_bytes(state_transition_view(value)) },
+            payload: unsafe { payload_bytes(value) },
             tag: HostStateTransitionViewResultTag::Ok,
         },
         Err(message) => HostStateTransitionViewResult {
