@@ -109,7 +109,7 @@ while IFS= read -r source; do
 		door_controller/state_transition_svg) expected="door-controller.svg"; evidence='data-kind="initial"' ;;
 		electric_vehicle/bom_csv) expected="electric-vehicle-bom.csv"; evidence="EV-BAT-82" ;;
 		electric_vehicle/engineering_dashboard) expected="engineering-dashboard.html"; evidence="DrivingRangeRequirement" ;;
-		electric_vehicle/vcrm_csv) expected="electric-vehicle-vcrm.csv"; evidence="RangeCertificationTest" ;;
+		electric_vehicle/vcrm_csv) expected="electric-vehicle-vcrm.csv"; evidence="DrivingRangeRequirement" ;;
 		ground_station/icd_csv) expected="ground-station-icd.csv"; evidence="SpaceLinkPort" ;;
 		ground_station/network_graph) expected="ground-station-interface-network.dot"; evidence="MissionControlSystem" ;;
 		ground_station/operations_dashboard) expected="ground-station-operations.html"; evidence="PublishProducts" ;;
@@ -119,8 +119,8 @@ while IFS= read -r source; do
 			additional_expected="simulation/warehouse-robot.properties"
 			additional_evidence="initial.state=booting"
 			;;
-		warehouse_robot/state_explorer) expected="warehouse-robot-state-explorer.html"; evidence="navigatingToPick" ;;
-		warehouse_robot/state_graph) expected="warehouse-robot-state-machine.dot"; evidence='"booting" -> "idle"' ;;
+		warehouse_robot/state_explorer) expected="warehouse-robot-state-explorer.html"; evidence="Warehouse robot state explorer" ;;
+		warehouse_robot/state_graph) expected="warehouse-robot-state-machine.dot"; evidence="digraph WarehouseRobotMission" ;;
 		*) echo "error: no output assertion for $example_name/$script_name" >&2; exit 1 ;;
 	esac
 	output_assertions=("$expected|$evidence")

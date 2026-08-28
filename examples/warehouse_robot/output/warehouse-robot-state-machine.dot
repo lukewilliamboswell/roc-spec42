@@ -12,16 +12,5 @@ digraph WarehouseRobotMission {
   "navigatingToDrop" [label="navigatingToDrop"]
   "navigatingToPick" [label="navigatingToPick"]
   "picking" [label="picking"]
-  "blocked" -> "navigatingToPick";
-  "booting" -> "idle";
-  "charging" -> "idle";
-  "dropping" -> "idle";
-  "faulted" -> "booting";
-  "idle" -> "charging";
-  "idle" -> "navigatingToPick";
-  "navigatingToDrop" -> "dropping";
-  "navigatingToPick" -> "blocked";
-  "navigatingToPick" -> "faulted";
-  "navigatingToPick" -> "picking";
-  "picking" -> "navigatingToDrop";
+
 }

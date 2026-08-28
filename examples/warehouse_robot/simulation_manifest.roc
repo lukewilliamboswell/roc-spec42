@@ -18,7 +18,7 @@ main! : List(Str) => Try(List({ file_path : Str, contents : List(U8) }), Str)
 main! = |args| {
 	info = Model.info!()
 	states = Model.find!(ByMetaclass(Metaclass("StateUsage")))?
-	transitions = Model.find!(ByMetaclass(Metaclass("transition")))?
+	transitions = Model.find!(ByMetaclass(Metaclass("TransitionUsage")))?
 	events = Model.find!(ByMetaclass(Metaclass("ActionDefinition")))?
 	manifest =
 		\\{
