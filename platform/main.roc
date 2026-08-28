@@ -24,6 +24,7 @@ platform ""
 		wasm32: {
 			inputs: ["host.wasm", app],
 			output: Shared,
+			exports: ["spec42_abi_version", "spec42_alloc", "spec42_generate"],
 		},
 	}
 
