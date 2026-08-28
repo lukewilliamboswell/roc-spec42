@@ -37,7 +37,7 @@ jobs:
           git -C ../spec42 fetch --depth=1 origin "$revision"
           git -C ../spec42 checkout --detach FETCH_HEAD
       - name: Fetch Spec42 standard library bundle
-        run: ../spec42/scripts/fetch-stdlib-bundle.sh
+        run: bash ../spec42/scripts/fetch-stdlib-bundle.sh
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
