@@ -33,7 +33,7 @@ jobs:
         run: |
           revision=$(sed -n '1p' .spec42-revision)
           git init ../spec42
-          git -C ../spec42 remote add origin https://github.com/lukewilliamboswell/spec42.git
+          git -C ../spec42 remote add origin https://github.com/elan8/spec42.git
           git -C ../spec42 fetch --depth=1 origin "$revision"
           git -C ../spec42 checkout --detach FETCH_HEAD
       - name: Install Rust
