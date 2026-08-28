@@ -1,5 +1,5 @@
 requirement,qualified_name,modelled_attributes,satisfied_by,verified_by
-"AccelerationRequirement","ElectricVehicle::AccelerationRequirement","id=EV-REQ-002; status=Approved; verificationMethod=Track test","ElectricVehicleSystem","AccelerationTrackTest"
-"BatterySafetyRequirement","ElectricVehicle::BatterySafetyRequirement","id=EV-REQ-003; status=Approved; verificationMethod=Hardware-in-the-loop test","BatteryPack","CrashIsolationHilTest"
-"DrivingRangeRequirement","ElectricVehicle::DrivingRangeRequirement","id=EV-REQ-001; status=Approved; verificationMethod=Certification road test","ElectricVehicleSystem","RangeCertificationTest"
-"ThermalDeratingRequirement","ElectricVehicle::ThermalDeratingRequirement","id=EV-REQ-004; status=Draft; verificationMethod=Thermal chamber test","Inverter; ThermalLoop","HotWeatherDeratingTest"
+"AccelerationRequirement","ElectricVehicle::AccelerationRequirement","id=EV-REQ-002; verificationMethod=Track test; status=Approved","",""
+"BatterySafetyRequirement","ElectricVehicle::BatterySafetyRequirement","id=EV-REQ-003; verificationMethod=Hardware-in-the-loop test; status=Approved","",""
+"DrivingRangeRequirement","ElectricVehicle::DrivingRangeRequirement","id=EV-REQ-001; verificationMethod=Certification road test; status=Approved","",""
+"ThermalDeratingRequirement","ElectricVehicle::ThermalDeratingRequirement","id=EV-REQ-004; verificationMethod=Thermal chamber test; status=Draft","",""

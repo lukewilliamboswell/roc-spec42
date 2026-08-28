@@ -12,10 +12,5 @@ digraph GroundStationInterfaces {
   "GroundStation::FlightDynamicsSystem::trackingInput" [label="trackingInput"]
   "GroundStation::MissionControlSystem::commandAndTelemetry" [label="commandAndTelemetry"]
   "GroundStation::MissionControlSystem::missionInput" [label="missionInput"]
-  "GroundStation::AntennaSubsystem::spaceLink" -> "GroundStation::BasebandProcessor::rfLink" [dir=both, arrowhead=none, arrowtail=none];
-  "GroundStation::AntennaSubsystem::tracking" -> "GroundStation::BasebandProcessor::trackingInput" [dir=both, arrowhead=none, arrowtail=none];
-  "GroundStation::AntennaSubsystem::tracking" -> "GroundStation::FlightDynamicsSystem::trackingInput" [dir=both, arrowhead=none, arrowtail=none];
-  "GroundStation::BasebandProcessor::missionOutput" -> "GroundStation::MissionControlSystem::missionInput" [dir=both, arrowhead=none, arrowtail=none];
-  "GroundStation::BasebandProcessor::rfLink" -> "GroundStation::MissionControlSystem::commandAndTelemetry" [dir=both, arrowhead=none, arrowtail=none];
-  "GroundStation::FlightDynamicsSystem::products" -> "GroundStation::MissionControlSystem::missionInput" [dir=both, arrowhead=none, arrowtail=none];
+
 }
