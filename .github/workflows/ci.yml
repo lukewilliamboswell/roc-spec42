@@ -29,13 +29,15 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: Check out pinned Spec42 fork
+      - name: Check out pinned Spec42 revision
         run: |
           revision=$(sed -n '1p' .spec42-revision)
           git init ../spec42
           git -C ../spec42 remote add origin https://github.com/elan8/spec42.git
           git -C ../spec42 fetch --depth=1 origin "$revision"
           git -C ../spec42 checkout --detach FETCH_HEAD
+      - name: Fetch Spec42 standard library bundle
+        run: ../spec42/scripts/fetch-stdlib-bundle.sh
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
